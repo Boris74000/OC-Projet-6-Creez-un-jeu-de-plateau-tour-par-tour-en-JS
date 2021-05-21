@@ -1,0 +1,14 @@
+{
+  "name": "projet6-openclassrooms",
+  "version": "1.0.0",
+  "description": "Vous avez jusqu'ici développé des petites applications JavaScript. Il faut maintenant vous lancer dans la création d'un projet plus complet, plus solide... bref plus costaud. ;)",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./css/style.css"
+  },
+  "author": "Charles-Boris DAUVIER",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.33.0"
+  }
+}
