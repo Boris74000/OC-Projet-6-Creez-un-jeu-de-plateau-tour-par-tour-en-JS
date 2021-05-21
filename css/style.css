@@ -1,3 +1,12 @@
+table {
+  border-collapse: collapse;
+  margin: auto;
+  width: 700px;
+  height: 700px;
+}
 
+td {
+  border: 1px solid black;
+}
 
 /*# sourceMappingURL=style.css.map */
