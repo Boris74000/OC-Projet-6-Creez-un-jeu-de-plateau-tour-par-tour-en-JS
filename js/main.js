@@ -1,0 +1,1 @@
+let mapBoardGame = new Map(10,10);
