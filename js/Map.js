@@ -1,6 +1,7 @@
 class Map {
 
     constructor(rowNumber, cellNumber) {
+
         this.rowNumber = rowNumber;
         this.cellNumber = cellNumber;
         this.generateMap();
@@ -24,30 +25,55 @@ class Map {
         }
     }
 
-    generateObstacle() {
-        const cells = document.getElementsByTagName('td');
-        // console.log(cells);
+    getOneRandomNumber() {
 
-        let arrayContainer = []; // this arrays holds the five random numbers generated;
+        this.cells = document.getElementsByTagName('td');
 
-        const genNum = Math.floor(Math.random() * cells.length);
+        this.arrayContainer = [];
 
-        arrayContainer.push(genNum);
+        this.randomNumber = Math.floor(Math.random() * this.cells.length);
+
+        this.arrayContainer.push(this.randomNumber);
+
+        // console.log(this.arrayContainer);
+
+    }
+
+    getManyRandomNumberWithoutDuplicates() {
 
         for (let counter = 0; counter < 5; counter++) {
-            //the counter is less than five because we already initialise arrayContainer[0] with genNum
-            let newGen = Math.floor(Math.random() * cells.length);
-            while (arrayContainer.lastIndexOf(newGen) !== -1) {
-                newGen = Math.floor(Math.random() * cells.length);
+            //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
+
+            // console.log(`arrayContainer ${this.arrayContainer}`);
+
+            let newRandomNumber = Math.floor(Math.random() * this.cells.length);
+
+            // console.log(`newRandomNumber ${newRandomNumber}`);
+
+            while (this.arrayContainer.lastIndexOf(newRandomNumber) !== -1) {
+                newRandomNumber = Math.floor(Math.random() * this.cells.length);
             }
-            arrayContainer.push(newGen);
+
+            // console.log(`newRandomNumber ${newRandomNumber}`);
+
+            this.arrayContainer.push(newRandomNumber);
+
+            // console.log(`arrayContainer ${this.arrayContainer}`);
         }
+    }
 
-        for (let i = 0; i < arrayContainer.length; i++) {
+    stylizingObstacle() {
 
-            cells[arrayContainer[i]].style.backgroundColor = "black";
+        for (let i = 0; i < this.arrayContainer.length; i++) {
+            this.cells[this.arrayContainer[i]].style.backgroundColor = "black";
         }
+    }
 
+    generateObstacle() {
+
+        this.getOneRandomNumber();
+        this.getManyRandomNumberWithoutDuplicates();
+        this.stylizingObstacle();
 
         // =====  Fonctionne mais ne gère pas les doublons =================
         // for (let i = 0; i < 6; i++) {
