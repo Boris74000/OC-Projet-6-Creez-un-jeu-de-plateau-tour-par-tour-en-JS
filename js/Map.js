@@ -5,7 +5,10 @@ class Map {
         this.rowNumber = rowNumber;
         this.cellNumber = cellNumber;
         this.generateMap();
+        this.getOneRandomNumber();
         this.generateObstacle();
+        this.generateInvocation();
+        // this.generateCharacters();
     }
 
     generateMap() {
@@ -39,9 +42,9 @@ class Map {
 
     }
 
-    getManyRandomNumberWithoutDuplicates() {
+    generateObstacle() {
 
-        for (let counter = 0; counter < 14; counter++) {
+        for (let counter = 0; counter < 12; counter++) {
             //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
 
             // console.log(`arrayContainer ${this.arrayContainer}`);
@@ -58,42 +61,62 @@ class Map {
 
             this.arrayContainer.push(newRandomNumber);
 
-            console.log(`arrayContainer ${this.arrayContainer}`);
+            // for (let randomNumberArray of this.arrayContainer) {
+            //     console.log(randomNumberArray);
+            // }
+
+            // for (let i = 0; i < this.arrayContainer.length; i++) {
+            //     this.cells[this.arrayContainer[i]].classList.add("obstacle");
+            // }
+            // console.log(`arrayContainer ${this.arrayContainer}`);
         }
+
+        this.stylizingObstacle();
+
     }
 
     stylizingObstacle() {
 
-        // Obstacles
-        for (let i = 0; i < 8; i++) {
-            this.cells[this.arrayContainer[i]].style.backgroundColor = "black";
-        }
-
-        // Invocations
-        for (let i = 8; i < 13; i++) {
-            this.cells[this.arrayContainer[i]].style.backgroundColor = "red";
-        }
-
-        // Personnages
-        for (let i = 13; i < 15; i++) {
-            this.cells[this.arrayContainer[i]].style.backgroundColor = "blue";
+        for (let i = 0; i < this.arrayContainer.length; i++) {
+            this.cells[this.arrayContainer[i]].classList.add("obstacle");
         }
 
     }
 
-    generateObstacle() {
+    generateInvocation() {
+        // console.log(this.arrayContainer);
+        // console.log(this.cells);
+        for (let counter = 0; counter < 4; counter++) {
+            //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
 
-        this.getOneRandomNumber();
-        this.getManyRandomNumberWithoutDuplicates();
-        this.stylizingObstacle();
+            // console.log(`arrayContainer ${this.arrayContainer}`);
 
-        // =====  Fonctionne mais ne gère pas les doublons =================
-        // for (let i = 0; i < 6; i++) {
-        // let randomObstacle =  Math.floor(Math.random() * cells.length);
-        // console.log(randomObstacle);
-        // cells[randomObstacle].style.backgroundColor = "black";
-        //}
-        // =================================================================
+            let newRandomNumber = Math.floor(Math.random() * this.cells.length);
+
+            // console.log(`newRandomNumber ${newRandomNumber}`);
+
+            while (this.arrayContainer.lastIndexOf(newRandomNumber) !== -1) {
+                newRandomNumber = Math.floor(Math.random() * this.cells.length);
+            }
+
+            // console.log(`newRandomNumber ${newRandomNumber}`);
+
+            this.arrayContainer.push(newRandomNumber);
+
+            // console.log(`arrayContainer ${this.arrayContainer}`);
+        }
+
+        this.stylizingInvocation();
+
+    }
+
+    stylizingInvocation() {
+        console.log(this.arrayContainer.length);
+        for (let i = 13; i < this.arrayContainer.length; i++) {
+            console.log("ici");
+            this.cells[this.arrayContainer[i]].classList.add("invocation");
+        }
+
     }
 
 }
