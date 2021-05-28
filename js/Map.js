@@ -41,7 +41,7 @@ class Map {
 
     getManyRandomNumberWithoutDuplicates() {
 
-        for (let counter = 0; counter < 5; counter++) {
+        for (let counter = 0; counter < 14; counter++) {
             //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
 
             // console.log(`arrayContainer ${this.arrayContainer}`);
@@ -58,15 +58,27 @@ class Map {
 
             this.arrayContainer.push(newRandomNumber);
 
-            // console.log(`arrayContainer ${this.arrayContainer}`);
+            console.log(`arrayContainer ${this.arrayContainer}`);
         }
     }
 
     stylizingObstacle() {
 
-        for (let i = 0; i < this.arrayContainer.length; i++) {
+        // Obstacles
+        for (let i = 0; i < 8; i++) {
             this.cells[this.arrayContainer[i]].style.backgroundColor = "black";
         }
+
+        // Invocations
+        for (let i = 8; i < 13; i++) {
+            this.cells[this.arrayContainer[i]].style.backgroundColor = "red";
+        }
+
+        // Personnages
+        for (let i = 13; i < 15; i++) {
+            this.cells[this.arrayContainer[i]].style.backgroundColor = "blue";
+        }
+
     }
 
     generateObstacle() {
