@@ -1,10 +1,14 @@
 class Map {
 
     constructor(rowNumber, cellNumber) {
+
         this.rowNumber = rowNumber;
         this.cellNumber = cellNumber;
         this.generateMap();
+        this.getOneRandomNumber();
         this.generateObstacle();
+        this.generateInvocation();
+        this.generateCharacters();
     }
 
     generateMap() {
@@ -24,38 +28,145 @@ class Map {
         }
     }
 
+    getOneRandomNumber() {
+
+        this.cells = document.getElementsByTagName('td');
+
+        this.arrayContainer = [];
+
+        this.randomNumber = Math.floor(Math.random() * this.cells.length);
+
+        this.arrayContainer.push(this.randomNumber);
+
+        // console.log(this.arrayContainer);
+
+    }
+
     generateObstacle() {
-        const cells = document.getElementsByTagName('td');
-        // console.log(cells);
 
-        let arrayContainer = []; // this arrays holds the five random numbers generated;
+        for (let counter = 0; counter < 12; counter++) {
+            //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
 
-        const genNum = Math.floor(Math.random() * cells.length);
+            // console.log(`arrayContainer ${this.arrayContainer}`);
 
-        arrayContainer.push(genNum);
+            let newRandomNumber = Math.floor(Math.random() * this.cells.length);
 
-        for (let counter = 0; counter < 5; counter++) {
-            //the counter is less than five because we already initialise arrayContainer[0] with genNum
-            let newGen = Math.floor(Math.random() * cells.length);
-            while (arrayContainer.lastIndexOf(newGen) !== -1) {
-                newGen = Math.floor(Math.random() * cells.length);
+            // console.log(`newRandomNumber ${newRandomNumber}`);
+
+            while (this.arrayContainer.lastIndexOf(newRandomNumber) !== -1) {
+                newRandomNumber = Math.floor(Math.random() * this.cells.length);
             }
-            arrayContainer.push(newGen);
+
+            // console.log(`newRandomNumber ${newRandomNumber}`);
+
+            this.arrayContainer.push(newRandomNumber);
+
+            // for (let randomNumberArray of this.arrayContainer) {
+            //     console.log(randomNumberArray);
+            // }
+
+            // for (let i = 0; i < this.arrayContainer.length; i++) {
+            //     this.cells[this.arrayContainer[i]].classList.add("obstacle");
+            // }
+            // console.log(`arrayContainer ${this.arrayContainer}`);
         }
 
-        for (let i = 0; i < arrayContainer.length; i++) {
+        this.stylizingObstacle();
 
-            cells[arrayContainer[i]].style.backgroundColor = "black";
+    }
+
+    stylizingObstacle() {
+
+        for (let i = 0; i < this.arrayContainer.length; i++) {
+            this.cells[this.arrayContainer[i]].classList.add("obstacle");
         }
 
+    }
 
-        // =====  Fonctionne mais ne gère pas les doublons =================
-        // for (let i = 0; i < 6; i++) {
-        // let randomObstacle =  Math.floor(Math.random() * cells.length);
-        // console.log(randomObstacle);
-        // cells[randomObstacle].style.backgroundColor = "black";
-        //}
-        // =================================================================
+    generateInvocation() {
+        // console.log(this.arrayContainer);
+        // console.log(this.cells);
+        for (let counter = 0; counter < 4; counter++) {
+            //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
+
+            // console.log(`arrayContainer ${this.arrayContainer}`);
+
+            let newRandomNumber = Math.floor(Math.random() * this.cells.length);
+
+            // console.log(`newRandomNumber ${newRandomNumber}`);
+
+            while (this.arrayContainer.lastIndexOf(newRandomNumber) !== -1) {
+                newRandomNumber = Math.floor(Math.random() * this.cells.length);
+            }
+
+            // console.log(`newRandomNumber ${newRandomNumber}`);
+
+            this.arrayContainer.push(newRandomNumber);
+
+            // console.log(`arrayContainer ${this.arrayContainer}`);
+        }
+
+        this.stylizingInvocation();
+
+    }
+
+    stylizingInvocation() {
+        // console.log(this.arrayContainer.length);
+        for (let i = 13; i < this.arrayContainer.length; i++) {
+            // console.log("ici");
+            this.cells[this.arrayContainer[i]].classList.add("invocation");
+        }
+
+    }
+
+    generateCharacters() {
+        for (let counter = 0; counter < 2; counter++) {
+
+            //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
+
+            let newRandomNumber = Math.floor(Math.random() * this.cells.length);
+
+            // Si pas de doublons entre arrayContainer et newRandomNumber
+            if (this.arrayContainer.indexOf(newRandomNumber) === -1) {
+
+                // Si newRandomNumber - 10
+                if (newRandomNumber - 10 >= 0 && newRandomNumber + 10 <= 99 &&
+                    newRandomNumber -1 >= 0 && newRandomNumber + 1 <= 99 ) {
+
+                    // Si newRandomNumber - 10 n'est pas déjà dans arrayContainer et que la classe de la cellule newRandomNumber - 10 différent de character
+                    if ((this.arrayContainer.indexOf(newRandomNumber - 10) === -1 && this.cells[newRandomNumber - 10].className !== "character") &&
+                        (this.arrayContainer.indexOf(newRandomNumber + 10) === -1 && this.cells[newRandomNumber + 10].className !== "character") &&
+                        (this.arrayContainer.indexOf(newRandomNumber - 1) === -1 && this.cells[newRandomNumber - 1].className !== "character") &&
+                        (this.arrayContainer.indexOf(newRandomNumber + 1) === -1 && this.cells[newRandomNumber + 1].className !== "character")) {
+
+                        this.arrayContainer.push(newRandomNumber);
+
+                        this.stylizingCharacters();
+                    }
+                    else {
+                        // console.log("newRandomNumber - 10 pas déjà dans arrayContainer, classe cellule newRandomNumber - 10 différent de character");
+                        counter --;
+                    }
+                } else {
+                    // console.log("newRandomNumber - 10 inférieur à 0 ou newRandomNumber + 10 supérieur à 99 ");
+                    counter--;
+                }
+
+
+            // Sinon on décrémente la boucle pour regénérer un nombre et recommencer le contrôle des doublons
+            } else {
+                counter--;
+            }
+        }
+
+    }
+
+    stylizingCharacters() {
+        // console.log(this.arrayContainer.length);
+        for (let i = 17; i < this.arrayContainer.length; i++) {
+            // console.log("ici");
+            this.cells[this.arrayContainer[i]].classList.add("character");
+        }
     }
 
 }

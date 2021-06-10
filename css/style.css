@@ -13,4 +13,16 @@ td {
   border: 1px solid black;
 }
 
+.obstacle {
+  background-color: black;
+}
+
+.invocation {
+  background-color: red;
+}
+
+.character {
+  background-color: blue;
+}
+
 /*# sourceMappingURL=style.css.map */
