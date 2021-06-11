@@ -141,6 +141,7 @@ class Map {
 
                         this.arrayContainer.push(newRandomNumber);
 
+                        this.getPositionCharacter();
                         this.stylizingCharacters();
                     }
                     else {
@@ -161,12 +162,24 @@ class Map {
 
     }
 
+    getPositionCharacter() {
+        let characterPosition = [];
+
+        for (let i = 17; i < this.arrayContainer.length; i++) {
+            characterPosition.push(this.arrayContainer[i])
+
+        }
+
+        return characterPosition;
+    }
+
     stylizingCharacters() {
         // console.log(this.arrayContainer.length);
         for (let i = 17; i < this.arrayContainer.length; i++) {
-            // console.log("ici");
+            // console.log(i);
             this.cells[this.arrayContainer[i]].classList.add("character");
         }
+
     }
 
 }
