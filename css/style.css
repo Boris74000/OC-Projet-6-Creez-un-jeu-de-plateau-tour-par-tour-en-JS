@@ -22,8 +22,24 @@ td {
   background-color: black;
 }
 
-.invocation {
-  background-color: red;
+.chocoMog {
+  background-color: yellow;
+}
+
+.titan {
+  background-color: brown;
+}
+
+.shiva {
+  background-color: lightseagreen;
+}
+
+.odin {
+  background-color: wheat;
+}
+
+.knightsOfTheRoundTable {
+  background-color: darkgoldenrod;
 }
 
 .character1, .character2 {
