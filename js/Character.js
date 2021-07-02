@@ -4,17 +4,19 @@ class Character{
         this.nameCharacter = nameCharacter;
         this.health = health;
         this.invocation = invocation;
-        this.getCharacterPosition();
+        // this.getCharacterPosition();
         this.generateWayVerticallyUp();
         this.generateWayVerticallyDown();
         this.generateWayHorizontallyLeft();
         this.generateWayHorizontallyRight();
         this.moveCharacter();
+        // this.changeInvocations();
+        this.testPerso();
     }
 
-    getCharacterPosition() {
-        console.log(mapBoardGame.getPositionCharacter());
-    }
+    // getCharacterPosition() {
+    //     console.log(mapBoardGame.getPositionCharacter());
+    // }
 
     generateWayVerticallyUp() {
         let indiceVerticallyUp = 10;
@@ -106,7 +108,6 @@ class Character{
 
                 mapBoardGame.cells[mapBoardGame.getPositionCharacter()[0] + indiceHorizontallyRight].classList.add("wayPossible");
 
-
             } else {
 
                 i = 3;
@@ -115,22 +116,86 @@ class Character{
             indiceHorizontallyRight += 1;
         }
 
+
     }
 
-    moveCharacter() {
-        let cellsClassNameWayPossible = document.getElementsByClassName("wayPossible");
+    moveCharacter = () => {
 
-        for (let i in cellsClassNameWayPossible) {
+        // console.log(this.invocation);
 
-            // erreur dans console cellsClassNameWayPossible[i].addEventListener is not a function, voir pourquoi
-            cellsClassNameWayPossible[i].addEventListener('click', function (e) {
+
+        this.cellsClassNameWayPossible = document.getElementsByClassName("wayPossible");
+
+        for (let i = 0 ; i < this.cellsClassNameWayPossible.length; i++) {
+
+
+            this.cellsClassNameWayPossible[i].addEventListener('click', (e) => {
+                // console.log(e.target.classList[i]);
+
+
+                for (let i = 0; i < e.target.classList.length; i++) {
+
+                    // if (e.target.classList[i] === "chocoMog" || e.target.classList[i] === "shiva" || e.target.classList[i] === "odin" ||
+                    //     e.target.classList[i] === "titan" || e.target.classList[i] === "knightsOfTheRoundTable") {
+                    //
+                    //     console.log(e.target.classList);
+                    //     console.log(e.target.classList[i]);
+                    //
+                    // }
+
+                    switch (e.target.classList[i]) {
+                        case "chocoMog":
+                            e.target.classList.replace("chocoMog", this.invocation);
+                            this.invocation = "chocoMog";
+                            console.log(this.invocation);
+                            break;
+                        case "shiva":
+                            e.target.classList.replace("shiva", this.invocation);
+                            this.invocation = "shiva";
+                            console.log(this.invocation);
+                            break;
+                        case "odin":
+                            e.target.classList.replace("odin", this.invocation);
+                            this.invocation = "odin";
+                            console.log(this.invocation);
+                            break;
+                        case "titan":
+                            e.target.classList.replace("titan", this.invocation);
+                            this.invocation = "titan";
+                            console.log(this.invocation);
+                            break;
+                        case "knightsOfTheRoundTable":
+                            e.target.classList.replace("knightsOfTheRoundTable", this.invocation);
+                            this.invocation = "knightsOfTheRoundTable";
+                            console.log(this.invocation);
+                            break;
+                    }
+
+                }
 
                 document.getElementsByClassName("character1")[0].classList.replace("character1", "wayPossible");
-                e.target.classList.remove("wayPossible");
-                e.target.classList.add("character1");
+                e.target.classList.replace("wayPossible", "character1");
             })
         }
 
+        console.log(this.invocation);
+
     }
+
+    // changeInvocations() {
+    //     for (let i = 0 ; i < this.cellsClassNameWayPossible.length; i++) {
+    //
+    //         this.cellsClassNameWayPossible[i].addEventListener('click', (e) => {
+    //
+    //             console.log(e.target.classList[0]);
+    //         })
+    //     }
+    // }
+
+    testPerso() {
+        console.log('iciPerso');
+    }
+
+
 
 }
