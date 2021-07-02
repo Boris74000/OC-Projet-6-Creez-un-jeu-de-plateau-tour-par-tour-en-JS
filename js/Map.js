@@ -112,9 +112,15 @@ class Map {
 
     stylizingInvocation() {
         // console.log(this.arrayContainer.length);
+
+        this.invocationNames = ["chocoMog", "shiva", "titan", "odin", "knightsOfTheRoundTable"];
+        let invocationNamesIndice = 1;
+
         for (let i = 13; i < this.arrayContainer.length; i++) {
-            // console.log("ici");
-            this.cells[this.arrayContainer[i]].classList.add("invocation");
+
+                this.cells[this.arrayContainer[i]].classList.add(this.invocationNames[invocationNamesIndice]);
+                invocationNamesIndice++;
+
         }
 
     }
