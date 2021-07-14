@@ -181,12 +181,13 @@ class Map {
 
     stylizingCharacters() {
         // console.log(this.arrayContainer.length);
-        let characterNumber = 1;
 
+        let characterName = ["cloud", "sephiroth"];
+        let characterNameIndice = 0;
         for (let i = 17; i < this.arrayContainer.length; i++) {
             // console.log(i);
-            this.cells[this.arrayContainer[i]].classList.add(`character${characterNumber}`);
-            characterNumber++;
+            this.cells[this.arrayContainer[i]].setAttribute("id", characterName[characterNameIndice]);
+            characterNameIndice++;
         }
 
     }
