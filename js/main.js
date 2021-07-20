@@ -13,6 +13,7 @@ let sephiroth = new Character("sephiroth", 100, chocoMog.nameInvocation, false);
 
 let newGame = new Game();
 
+newGame.determineEnemyPlayer();
 newGame.getCurrentPlayerPosition();
 newGame.generateWayVerticallyUp();
 newGame.generateWayVerticallyDown();

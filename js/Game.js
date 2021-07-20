@@ -1,15 +1,32 @@
 class Game {
     constructor() {
         this.currentPlayer = "cloud";
+        this.enemyplayer = "sephiroth"
+    }
+
+    determineEnemyPlayer() {
+        console.log("-----------Début du tour------------")
+        console.log(`debut currentPlayer: ${this.currentPlayer}`);
+
+        console.log(`debut enemy: ${this.enemyplayer}`);
+
+        if (this.currentPlayer === "cloud") {
+            this.enemyplayer = "sephiroth"
+        } else {
+            this.enemyplayer = "cloud"
+        }
+        console.log(`après determineEnemyPlayer enemy: ${this.enemyplayer}`);
+
     }
 
     getCurrentPlayerPosition() {
         this.cellsArray = Array.from(mapBoardGame.cells)
 
         for (let i = 0; i < this.cellsArray.length; i++) {
-            if (this.cellsArray[i].id === "cloud") {
+            if (this.cellsArray[i].id === this.currentPlayer) {
                 this.currentPlayerPosition = i;
             }
+
         }
 
     }
@@ -31,20 +48,6 @@ class Game {
             indiceVerticallyUp += 10;
         }
 
-        // for (let i = 0; i < 3; i++) {
-        //
-        //     if (mapBoardGame.getPositionCharacter()[0] - indiceVerticallyUp >= 0 && mapBoardGame.cells[mapBoardGame.getPositionCharacter()[0] - indiceVerticallyUp].className !== "obstacle" ) {
-        //
-        //         mapBoardGame.cells[mapBoardGame.getPositionCharacter()[0] - indiceVerticallyUp].classList.add("wayPossible");
-        //
-        //     } else {
-        //
-        //         i = 3;
-        //     }
-        //
-        //     indiceVerticallyUp += 10;
-        // }
-
     }
 
     generateWayVerticallyDown() {
@@ -52,9 +55,9 @@ class Game {
 
         for (let i = 0; i < 3; i++) {
 
-            if (this.currentPlayerPosition + indiceVerticallyDown <= 99 && mapBoardGame.cells[this.currentPlayerPosition + indiceVerticallyDown].className !== "obstacle" ) {
+            if (this.currentPlayerPosition + indiceVerticallyDown <= 99 && this.cellsArray[this.currentPlayerPosition + indiceVerticallyDown].className !== "obstacle" ) {
 
-                mapBoardGame.cells[this.currentPlayerPosition + indiceVerticallyDown].classList.add("wayPossible");
+                this.cellsArray[this.currentPlayerPosition + indiceVerticallyDown].classList.add("wayPossible");
 
             } else {
 
@@ -131,32 +134,25 @@ class Game {
 
     moveCharacter = () => {
 
-        // console.log(this.invocation);
-
-
         this.cellsClassNameWayPossible = document.getElementsByClassName("wayPossible");
 
         for (let i = 0 ; i < this.cellsClassNameWayPossible.length; i++) {
 
 
             this.cellsClassNameWayPossible[i].addEventListener('click', (e) => {
-                // console.log(e.target.classList[i]);
+
                 this.changeInvocation(e);
 
-                // console.log(document.getElementById(this.currentPlayer));
-
-                // document.getElementsByClassName(this.currentPlayer)[0].classList.replace(this.currentPlayer, "wayPossible");
-                document.getElementById(this.currentPlayer).classList.add("wayPossible");
+                console.log(`currentPlayer : ${document.getElementById(this.currentPlayer)}`)
+                console.log()
+                // document.getElementById(this.currentPlayer).classList.add("wayPossible");
                 document.getElementById(this.currentPlayer).removeAttribute("id");
 
-
-
-
-                // e.target.classList.replace("wayPossible", this.currentPlayer);
-                e.target.classList.remove("wayPossible");
+                // e.target.classList.remove("wayPossible");
                 e.target.id = this.currentPlayer;
-                // console.log(cloud.invocation);
-                // console.log(typeof cloud);
+
+                this.detectEnemy();
+
             })
         }
 
@@ -175,27 +171,22 @@ class Game {
                 case "chocoMog":
                     e.target.classList.replace("chocoMog", this.currentPlayerInvocation);
                     this.currentPlayerInvocation = "chocoMog";
-                    console.log(this.currentPlayerInvocation);
                     break;
                 case "shiva":
                     e.target.classList.replace("shiva", this.currentPlayerInvocation);
                     this.currentPlayerInvocation = "shiva";
-                    console.log(this.currentPlayerInvocation);
                     break;
                 case "odin":
                     e.target.classList.replace("odin", this.currentPlayerInvocation);
                     this.currentPlayerInvocation = "odin";
-                    console.log(this.currentPlayerInvocation);
                     break;
                 case "titan":
                     e.target.classList.replace("titan", this.currentPlayerInvocation);
                     this.currentPlayerInvocation = "titan";
-                    console.log(this.currentPlayerInvocation);
                     break;
                 case "knightsOfTheRoundTable":
                     e.target.classList.replace("knightsOfTheRoundTable", this.currentPlayerInvocation);
                     this.currentPlayerInvocation = "knightsOfTheRoundTable";
-                    console.log(this.currentPlayerInvocation);
                     break;
             }
 
@@ -206,6 +197,76 @@ class Game {
         } else {
             sephiroth.invocation = this.currentPlayerInvocation;
         }
+
+    }
+
+    detectEnemy() {
+        this.getCurrentPlayerPosition();
+
+        let indiceAdjacentPositionUpDown = 10
+        let indiceAdjacentPositionRightLeft = 1
+
+        // console.log(this.currentPlayerPosition - indiceAdjacentPositionUpDown)
+
+        if (this.currentPlayerPosition - indiceAdjacentPositionUpDown >= 0 &&
+            this.cellsArray[this.currentPlayerPosition - indiceAdjacentPositionUpDown].id === this.enemyplayer) {
+
+            this.startFight();
+
+        } else if (this.currentPlayerPosition + indiceAdjacentPositionUpDown <= 99 &&
+            this.cellsArray[this.currentPlayerPosition + indiceAdjacentPositionUpDown].id === this.enemyplayer) {
+
+            this.startFight();
+
+        } else if (this.currentPlayerPosition - indiceAdjacentPositionRightLeft >= 0 &&
+            this.cellsArray[this.currentPlayerPosition - indiceAdjacentPositionRightLeft].id === this.enemyplayer) {
+
+            this.startFight();
+
+        } else if (this.currentPlayerPosition + indiceAdjacentPositionRightLeft <= 99 &&
+            this.cellsArray[this.currentPlayerPosition + indiceAdjacentPositionRightLeft].id === this.enemyplayer) {
+
+            this.startFight();
+
+        } else {
+
+            this.nextRound();
+        }
+
+    }
+
+    startFight() {
+        alert('combat qui débute');
+    }
+
+    nextRound = () => {
+        // On efface le chemin proposé du joueur actuel
+        for (let i = 0; i < this.cellsArray.length; i++) {
+            this.cellsArray[i].classList.remove("wayPossible");
+        }
+
+        // On change le joueur actuel
+        if (this.currentPlayer === "cloud") {
+            console.log("condition current player cloud")
+            this.currentPlayer = "sephiroth";
+        } else {
+            console.log("condition current player sephiroth")
+            this.currentPlayer = "cloud";
+        }
+
+        console.log(`apres changement joueur fin currentPlayer: ${this.currentPlayer}`);
+        console.log(`fin enemy: ${this.enemyplayer}`);
+        console.log("---------fin du tour------------")
+
+        // On relance les méthodes
+        this.determineEnemyPlayer();
+        this.getCurrentPlayerPosition();
+        this.generateWayVerticallyUp();
+        this.generateWayVerticallyDown();
+        this.generateWayHorizontallyLeft();
+        this.generateWayHorizontallyRight();
+        this.moveCharacter();
+
 
     }
 }
