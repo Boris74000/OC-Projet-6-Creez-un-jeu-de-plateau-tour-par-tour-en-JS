@@ -1,7 +1,6 @@
 class Map {
 
     constructor(rowNumber, cellNumber) {
-
         this.rowNumber = rowNumber;
         this.cellNumber = cellNumber;
         this.generateMap();
@@ -12,7 +11,6 @@ class Map {
     }
 
     generateMap() {
-
         const table = document.getElementsByTagName('table')[0];
 
         for (let iRow = 0; iRow < this.rowNumber; iRow++ ) {
@@ -29,7 +27,6 @@ class Map {
     }
 
     getOneRandomNumber() {
-
         this.cells = document.getElementsByTagName('td');
 
         this.arrayContainer = [];
@@ -38,37 +35,20 @@ class Map {
 
         this.arrayContainer.push(this.randomNumber);
 
-        // console.log(this.arrayContainer);
-
     }
 
     generateObstacle() {
-
         for (let counter = 0; counter < 12; counter++) {
             //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
 
-            // console.log(`arrayContainer ${this.arrayContainer}`);
-
             let newRandomNumber = Math.floor(Math.random() * this.cells.length);
-
-            // console.log(`newRandomNumber ${newRandomNumber}`);
 
             while (this.arrayContainer.lastIndexOf(newRandomNumber) !== -1) {
                 newRandomNumber = Math.floor(Math.random() * this.cells.length);
             }
 
-            // console.log(`newRandomNumber ${newRandomNumber}`);
-
             this.arrayContainer.push(newRandomNumber);
 
-            // for (let randomNumberArray of this.arrayContainer) {
-            //     console.log(randomNumberArray);
-            // }
-
-            // for (let i = 0; i < this.arrayContainer.length; i++) {
-            //     this.cells[this.arrayContainer[i]].classList.add("obstacle");
-            // }
-            // console.log(`arrayContainer ${this.arrayContainer}`);
         }
 
         this.stylizingObstacle();
@@ -76,7 +56,6 @@ class Map {
     }
 
     stylizingObstacle() {
-
         for (let i = 0; i < this.arrayContainer.length; i++) {
             this.cells[this.arrayContainer[i]].classList.add("obstacle");
         }
@@ -84,26 +63,17 @@ class Map {
     }
 
     generateInvocation() {
-        // console.log(this.arrayContainer);
-        // console.log(this.cells);
         for (let counter = 0; counter < 4; counter++) {
             //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
 
-            // console.log(`arrayContainer ${this.arrayContainer}`);
-
             let newRandomNumber = Math.floor(Math.random() * this.cells.length);
-
-            // console.log(`newRandomNumber ${newRandomNumber}`);
 
             while (this.arrayContainer.lastIndexOf(newRandomNumber) !== -1) {
                 newRandomNumber = Math.floor(Math.random() * this.cells.length);
             }
 
-            // console.log(`newRandomNumber ${newRandomNumber}`);
-
             this.arrayContainer.push(newRandomNumber);
 
-            // console.log(`arrayContainer ${this.arrayContainer}`);
         }
 
         this.stylizingInvocation();
@@ -111,8 +81,6 @@ class Map {
     }
 
     stylizingInvocation() {
-        // console.log(this.arrayContainer.length);
-
         this.invocationNames = ["chocoMog", "shiva", "titan", "odin", "knightsOfTheRoundTable"];
         let invocationNamesIndice = 1;
 
@@ -147,15 +115,13 @@ class Map {
 
                         this.arrayContainer.push(newRandomNumber);
 
-                        this.getPositionCharacter();
+                        // this.getPositionCharacter();
                         this.stylizingCharacters();
                     }
                     else {
-                        // console.log("newRandomNumber - 10 pas déjà dans arrayContainer, classe cellule newRandomNumber - 10 différent de character");
                         counter --;
                     }
                 } else {
-                    // console.log("newRandomNumber - 10 inférieur à 0 ou newRandomNumber + 10 supérieur à 99 ");
                     counter--;
                 }
 
@@ -168,20 +134,18 @@ class Map {
 
     }
 
-    getPositionCharacter() {
-        let characterPosition = [];
-
-        for (let i = 17; i < this.arrayContainer.length; i++) {
-            characterPosition.push(this.arrayContainer[i])
-
-        }
-
-        return characterPosition;
-    }
+    // getPositionCharacter() {
+    //     let characterPosition = [];
+    //
+    //     for (let i = 17; i < this.arrayContainer.length; i++) {
+    //         characterPosition.push(this.arrayContainer[i])
+    //
+    //     }
+    //
+    //     return characterPosition;
+    // }
 
     stylizingCharacters() {
-        // console.log(this.arrayContainer.length);
-
         let characterName = ["cloud", "sephiroth"];
         let characterNameIndice = 0;
         for (let i = 17; i < this.arrayContainer.length; i++) {

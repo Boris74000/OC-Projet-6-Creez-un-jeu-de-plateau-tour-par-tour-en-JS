@@ -13,10 +13,11 @@ let sephiroth = new Character("sephiroth", 100, chocoMog.nameInvocation, false);
 
 let newGame = new Game();
 
-newGame.determineEnemyPlayer();
+// newGame.determineEnemyPlayer();
 newGame.getCurrentPlayerPosition();
 newGame.generateWayVerticallyUp();
 newGame.generateWayVerticallyDown();
 newGame.generateWayHorizontallyLeft();
 newGame.generateWayHorizontallyRight();
-newGame.moveCharacter();
+newGame.events();
+// newGame.moveCharacter();
