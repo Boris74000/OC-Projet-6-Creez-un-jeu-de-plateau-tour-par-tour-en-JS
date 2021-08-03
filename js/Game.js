@@ -5,14 +5,13 @@ class Game {
     }
 
     getCurrentPlayerPosition() {
-        for (let i = 0; i < mapBoardGame.cells.length; i++) {
-            if (mapBoardGame.cells[i].id === this.currentPlayer) {
+        this.cellsTd = document.getElementsByTagName('td');
+        for (let i = 0; i < this.cellsTd.length; i++) {
+            if (this.cellsTd[i].id === this.currentPlayer) {
                 this.currentPlayerPosition = i;
                 break;
             }
-
         }
-
     }
 
     generateWayVerticallyUp() {
@@ -20,9 +19,11 @@ class Game {
 
         for (let i = 0; i < 3; i++) {
 
-            if (this.currentPlayerPosition - indiceVerticallyUp >= 0 && mapBoardGame.cells[this.currentPlayerPosition - indiceVerticallyUp].className !== "obstacle" ) {
+            if (this.currentPlayerPosition - indiceVerticallyUp >= 0 &&
+                this.cellsTd[this.currentPlayerPosition - indiceVerticallyUp].className !== "obstacle" &&
+                this.cellsTd[this.currentPlayerPosition - indiceVerticallyUp].id !== this.enemyplayer) {
 
-                mapBoardGame.cells[this.currentPlayerPosition - indiceVerticallyUp].classList.add("wayPossible");
+                this.cellsTd[this.currentPlayerPosition - indiceVerticallyUp].classList.add("wayPossible");
 
             } else {
 
@@ -39,9 +40,11 @@ class Game {
 
         for (let i = 0; i < 3; i++) {
 
-            if (this.currentPlayerPosition + indiceVerticallyDown <= 99 && mapBoardGame.cells[this.currentPlayerPosition + indiceVerticallyDown].className !== "obstacle" ) {
+            if (this.currentPlayerPosition + indiceVerticallyDown <= 99 &&
+                this.cellsTd[this.currentPlayerPosition + indiceVerticallyDown].className !== "obstacle" &&
+                this.cellsTd[this.currentPlayerPosition + indiceVerticallyDown].id !== this.enemyplayer) {
 
-                mapBoardGame.cells[this.currentPlayerPosition + indiceVerticallyDown].classList.add("wayPossible");
+                this.cellsTd[this.currentPlayerPosition + indiceVerticallyDown].classList.add("wayPossible");
 
             } else {
 
@@ -69,10 +72,11 @@ class Game {
             // Si la soustraction des 2 dizaines est égal à 0 (on est donc sur la même ligne)
 
             if (this.currentPlayerPosition - indiceHorizontallyLeft >= 0 &&
-                mapBoardGame.cells[this.currentPlayerPosition - indiceHorizontallyLeft].className !== "obstacle" &&
+                this.cellsTd[this.currentPlayerPosition - indiceHorizontallyLeft].className !== "obstacle" &&
+                this.cellsTd[this.currentPlayerPosition - indiceHorizontallyLeft].id !== this.enemyplayer &&
                 tensPositionCharacter - tensPositionCharacterLessIndex === 0) {
 
-                mapBoardGame.cells[this.currentPlayerPosition - indiceHorizontallyLeft].classList.add("wayPossible");
+                this.cellsTd[this.currentPlayerPosition - indiceHorizontallyLeft].classList.add("wayPossible");
 
             } else {
 
@@ -100,10 +104,11 @@ class Game {
             // Si la soustraction des 2 dizaines est égal à 0 (on est donc sur la même ligne)
 
             if (this.currentPlayerPosition + indiceHorizontallyRight <= 99 &&
-                mapBoardGame.cells[this.currentPlayerPosition + indiceHorizontallyRight].className !== "obstacle" &&
+                this.cellsTd[this.currentPlayerPosition + indiceHorizontallyRight].className !== "obstacle" &&
+                this.cellsTd[this.currentPlayerPosition + indiceHorizontallyRight].id !== this.enemyplayer &&
                 tensPositionCharacter - tensPositionCharacterLessIndex === 0) {
 
-                mapBoardGame.cells[this.currentPlayerPosition + indiceHorizontallyRight].classList.add("wayPossible");
+                this.cellsTd[this.currentPlayerPosition + indiceHorizontallyRight].classList.add("wayPossible");
 
             } else {
 
@@ -116,18 +121,31 @@ class Game {
 
     }
 
-    events = () => {
+    checkElClicked() {
+       document.addEventListener("click", (e) => {
+           if (e.target.classList.contains("wayPossible")) {
+               this.moveCharacter(e);
+               e.stopImmediatePropagation();
+           }
+       })
 
-        this.wayPossibleCells = Array.from(document.getElementsByClassName("wayPossible"));
+    }
 
-        for (let i = 0; i < this.wayPossibleCells.length; i++) {
-            this.wayPossibleCells[i].addEventListener("click", (e) => {
-                this.changeInvocation(e);
-                this.moveCharacter(e);
-                // this.detectEnemy();
-                this.nextRound();
-            })
+    moveCharacter = (e) => {
+        // alert("moveCharacter");
+        document.getElementById(this.currentPlayer).removeAttribute('id');
+
+        e.target.id = this.currentPlayer;
+
+        if (e.target.classList.contains("chocoMog") ||
+            e.target.classList.contains("shiva") ||
+            e.target.classList.contains("titan") ||
+            e.target.classList.contains("odin") ||
+            e.target.classList.contains("knightsOfTheRoundTable")) {
+            this.changeInvocation(e);
         }
+
+        this.detectEnemy();
 
     }
 
@@ -173,40 +191,68 @@ class Game {
 
     }
 
-    moveCharacter = (e) => {
-        // document.getElementById(this.currentPlayer).classList.add("wayPossible");
-        document.getElementById(this.currentPlayer).removeAttribute('id');
+    detectEnemy() {
+        this.getCurrentPlayerPosition();
 
-        e.target.classList.remove("wayPossible");
-        e.target.id = this.currentPlayer;
+        let indiceAdjacentPositionUpDown = 10
+        let indiceAdjacentPositionRightLeft = 1
+
+        if (this.currentPlayerPosition - indiceAdjacentPositionUpDown >= 0 &&
+            this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionUpDown].id === this.enemyplayer) {
+
+            this.startFight();
+
+        } else if (this.currentPlayerPosition + indiceAdjacentPositionUpDown <= 99 &&
+            this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionUpDown].id === this.enemyplayer) {
+
+            this.startFight();
+
+        } else if (this.currentPlayerPosition - indiceAdjacentPositionRightLeft >= 0 &&
+            this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionRightLeft].id === this.enemyplayer) {
+
+            this.startFight();
+
+        } else if (this.currentPlayerPosition + indiceAdjacentPositionRightLeft <= 99 &&
+            this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionRightLeft].id === this.enemyplayer) {
+
+            this.startFight();
+
+        } else {
+
+            this.nextRound();
+        }
+
     }
 
+    startFight() {
+        alert('combat qui débute');
+    }
 
-
+    changeCurrentAndEnemyPlayer() {
+        if (this.currentPlayer === "cloud") {
+            this.currentPlayer = "sephiroth";
+            this.enemyplayer = "cloud";
+        } else {
+            this.currentPlayer = "cloud";
+            this.enemyplayer = "sephiroth";
+        }
+    }
 
     nextRound = () => {
         // On efface le chemin proposé du joueur actuel
+        this.wayPossibleCells = Array.from(document.getElementsByClassName("wayPossible"));
         for (let i = 0; i < this.wayPossibleCells.length; i++) {
             this.wayPossibleCells[i].classList.remove("wayPossible");
         }
-        // // On change le joueur actuel
-        // if (this.currentPlayer === "cloud") {
-        //     this.currentPlayer = "sephiroth";
-        // } else {
-        //     this.currentPlayer = "cloud";
-        // }
-
+        this.changeCurrentAndEnemyPlayer();
 
         // On relance les méthodes
-        // this.determineEnemyPlayer();
         this.getCurrentPlayerPosition();
         this.generateWayVerticallyUp();
         this.generateWayVerticallyDown();
         this.generateWayHorizontallyLeft();
         this.generateWayHorizontallyRight();
-        this.events();
-        // this.moveCharacter();
-
+        this.checkElClicked();
     }
 }
 
