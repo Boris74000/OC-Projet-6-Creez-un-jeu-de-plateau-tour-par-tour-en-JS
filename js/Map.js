@@ -23,7 +23,6 @@ class Map {
             }
 
             table.appendChild(row);
-
         }
     }
 
@@ -35,7 +34,6 @@ class Map {
         this.randomNumber = Math.floor(Math.random() * this.cells.length);
 
         this.arrayContainer.push(this.randomNumber);
-
     }
 
     generateObstacle() {
@@ -49,18 +47,15 @@ class Map {
             }
 
             this.arrayContainer.push(newRandomNumber);
-
         }
 
         this.stylizingObstacle();
-
     }
 
     stylizingObstacle() {
         for (let i = 0; i < this.arrayContainer.length; i++) {
             this.cells[this.arrayContainer[i]].classList.add("obstacle");
         }
-
     }
 
     generateInvocation() {
@@ -74,11 +69,9 @@ class Map {
             }
 
             this.arrayContainer.push(newRandomNumber);
-
         }
 
         this.stylizingInvocation();
-
     }
 
     stylizingInvocation() {
@@ -89,9 +82,7 @@ class Map {
 
                 this.cells[this.arrayContainer[i]].classList.add(this.invocationNames[invocationNamesIndice]);
                 invocationNamesIndice++;
-
         }
-
     }
 
     generateCharacters() {
@@ -116,56 +107,47 @@ class Map {
 
                         this.arrayContainer.push(newRandomNumber);
 
-                        // this.getPositionCharacter();
                         this.stylizingCharacters();
                     }
+
                     else {
+
                         counter --;
+
                     }
+
                 } else {
+
                     counter--;
                 }
 
-
             // Sinon on décrémente la boucle pour regénérer un nombre et recommencer le contrôle des doublons
             } else {
+
                 counter--;
+
             }
         }
-
     }
-
-    // getPositionCharacter() {
-    //     let characterPosition = [];
-    //
-    //     for (let i = 17; i < this.arrayContainer.length; i++) {
-    //         characterPosition.push(this.arrayContainer[i])
-    //
-    //     }
-    //
-    //     return characterPosition;
-    // }
 
     stylizingCharacters() {
         let characterName = ["cloud", "sephiroth"];
         let characterNameIndice = 0;
         for (let i = 17; i < this.arrayContainer.length; i++) {
-            // console.log(i);
             this.cells[this.arrayContainer[i]].setAttribute("id", characterName[characterNameIndice]);
             characterNameIndice++;
         }
-
     }
 
     displayCharacteristicsCharacters() {
         // On affiche les caractéristique de chaque joueur
         document.getElementById("cloudName").innerHTML = cloud.nameCharacter;
         document.getElementById("cloudHealthPoints").innerHTML = cloud.health;
-        document.getElementById("cloudInvocationPossessed").innerHTML = cloud.invocation;
+        document.getElementById("cloudInvocationPossessed").innerHTML = cloud.invocation.nameInvocation;
 
         document.getElementById("sephirothName").innerHTML = sephiroth.nameCharacter;
         document.getElementById("sephirothHealthPoints").innerHTML = sephiroth.health;
-        document.getElementById("sephirothInvocationPossessed").innerHTML = sephiroth.invocation;
+        document.getElementById("sephirothInvocationPossessed").innerHTML = sephiroth.invocation.nameInvocation;
     }
 
 }
