@@ -1,13 +1,13 @@
 class Game {
     constructor() {
-        this.currentPlayer = "cloud";
-        this.enemyplayer = "sephiroth";
+        this.currentPlayer = cloud;
+        this.enemyplayer = sephiroth;
     }
 
     getCurrentPlayerPosition() {
         this.cellsTd = document.getElementsByTagName('td');
         for (let i = 0; i < this.cellsTd.length; i++) {
-            if (this.cellsTd[i].id === this.currentPlayer) {
+            if (this.cellsTd[i].id === this.currentPlayer.nameCharacter) {
                 this.currentPlayerPosition = i;
                 break;
             }
@@ -21,7 +21,7 @@ class Game {
 
             if (this.currentPlayerPosition - indiceVerticallyUp >= 0 &&
                 this.cellsTd[this.currentPlayerPosition - indiceVerticallyUp].className !== "obstacle" &&
-                this.cellsTd[this.currentPlayerPosition - indiceVerticallyUp].id !== this.enemyplayer) {
+                this.cellsTd[this.currentPlayerPosition - indiceVerticallyUp].id !== this.enemyplayer.nameCharacter) {
 
                 this.cellsTd[this.currentPlayerPosition - indiceVerticallyUp].classList.add("wayPossible");
 
@@ -32,7 +32,6 @@ class Game {
 
             indiceVerticallyUp += 10;
         }
-
     }
 
     generateWayVerticallyDown() {
@@ -42,7 +41,7 @@ class Game {
 
             if (this.currentPlayerPosition + indiceVerticallyDown <= 99 &&
                 this.cellsTd[this.currentPlayerPosition + indiceVerticallyDown].className !== "obstacle" &&
-                this.cellsTd[this.currentPlayerPosition + indiceVerticallyDown].id !== this.enemyplayer) {
+                this.cellsTd[this.currentPlayerPosition + indiceVerticallyDown].id !== this.enemyplayer.nameCharacter) {
 
                 this.cellsTd[this.currentPlayerPosition + indiceVerticallyDown].classList.add("wayPossible");
 
@@ -53,7 +52,6 @@ class Game {
 
             indiceVerticallyDown += 10;
         }
-
     }
 
     generateWayHorizontallyLeft() {
@@ -73,7 +71,7 @@ class Game {
 
             if (this.currentPlayerPosition - indiceHorizontallyLeft >= 0 &&
                 this.cellsTd[this.currentPlayerPosition - indiceHorizontallyLeft].className !== "obstacle" &&
-                this.cellsTd[this.currentPlayerPosition - indiceHorizontallyLeft].id !== this.enemyplayer &&
+                this.cellsTd[this.currentPlayerPosition - indiceHorizontallyLeft].id !== this.enemyplayer.nameCharacter &&
                 tensPositionCharacter - tensPositionCharacterLessIndex === 0) {
 
                 this.cellsTd[this.currentPlayerPosition - indiceHorizontallyLeft].classList.add("wayPossible");
@@ -85,7 +83,6 @@ class Game {
 
             indiceHorizontallyLeft += 1;
         }
-
     }
 
     generateWayHorizontallyRight() {
@@ -105,7 +102,7 @@ class Game {
 
             if (this.currentPlayerPosition + indiceHorizontallyRight <= 99 &&
                 this.cellsTd[this.currentPlayerPosition + indiceHorizontallyRight].className !== "obstacle" &&
-                this.cellsTd[this.currentPlayerPosition + indiceHorizontallyRight].id !== this.enemyplayer &&
+                this.cellsTd[this.currentPlayerPosition + indiceHorizontallyRight].id !== this.enemyplayer.nameCharacter &&
                 tensPositionCharacter - tensPositionCharacterLessIndex === 0) {
 
                 this.cellsTd[this.currentPlayerPosition + indiceHorizontallyRight].classList.add("wayPossible");
@@ -117,8 +114,6 @@ class Game {
 
             indiceHorizontallyRight += 1;
         }
-
-
     }
 
     checkElClicked() {
@@ -128,31 +123,32 @@ class Game {
                e.stopImmediatePropagation();
            }
        })
-
     }
 
     moveCharacter = (e) => {
-        // alert("moveCharacter");
-        document.getElementById(this.currentPlayer).removeAttribute('id');
+        document.getElementById(this.currentPlayer.nameCharacter).removeAttribute('id');
 
-        e.target.id = this.currentPlayer;
+        e.target.id = this.currentPlayer.nameCharacter;
 
         if (e.target.classList.contains("chocoMog") ||
             e.target.classList.contains("shiva") ||
             e.target.classList.contains("titan") ||
             e.target.classList.contains("odin") ||
             e.target.classList.contains("knightsOfTheRoundTable")) {
+
             this.changeInvocation(e);
         }
 
         this.detectEnemy();
-
     }
 
     changeInvocation(e) {
-        if (this.currentPlayer === "cloud") {
+        if (this.currentPlayer === cloud) {
+
             this.currentPlayerInvocation = cloud.invocation;
+
         } else {
+
             this.currentPlayerInvocation = sephiroth.invocation;
         }
 
@@ -160,35 +156,37 @@ class Game {
 
             switch (e.target.classList[i]) {
                 case "chocoMog":
-                    e.target.classList.replace("chocoMog", this.currentPlayerInvocation);
-                    this.currentPlayerInvocation = "chocoMog";
+                    e.target.classList.replace("chocoMog", this.currentPlayerInvocation.nameInvocation);
+                    this.currentPlayerInvocation = chocoMog;
                     break;
                 case "shiva":
-                    e.target.classList.replace("shiva", this.currentPlayerInvocation);
-                    this.currentPlayerInvocation = "shiva";
+                    e.target.classList.replace("shiva", this.currentPlayerInvocation.nameInvocation);
+                    this.currentPlayerInvocation = shiva;
                     break;
                 case "odin":
-                    e.target.classList.replace("odin", this.currentPlayerInvocation);
-                    this.currentPlayerInvocation = "odin";
+                    e.target.classList.replace("odin", this.currentPlayerInvocation.nameInvocation);
+                    this.currentPlayerInvocation = odin;
                     break;
                 case "titan":
-                    e.target.classList.replace("titan", this.currentPlayerInvocation);
-                    this.currentPlayerInvocation = "titan";
+                    e.target.classList.replace("titan", this.currentPlayerInvocation.nameInvocation);
+                    this.currentPlayerInvocation = titan;
                     break;
                 case "knightsOfTheRoundTable":
-                    e.target.classList.replace("knightsOfTheRoundTable", this.currentPlayerInvocation);
-                    this.currentPlayerInvocation = "knightsOfTheRoundTable";
+                    e.target.classList.replace("knightsOfTheRoundTable", this.currentPlayerInvocation.nameInvocation);
+                    this.currentPlayerInvocation = knightsOfTheRoundTable;
                     break;
             }
 
         }
 
-        if (this.currentPlayer === "cloud") {
+        if (this.currentPlayer === cloud) {
             cloud.invocation = this.currentPlayerInvocation;
+            document.getElementById("cloudInvocationPossessed").innerHTML = cloud.invocation.nameInvocation;
+
         } else {
             sephiroth.invocation = this.currentPlayerInvocation;
+            document.getElementById("sephirothInvocationPossessed").innerHTML = sephiroth.invocation.nameInvocation;
         }
-
     }
 
     detectEnemy() {
@@ -198,22 +196,22 @@ class Game {
         let indiceAdjacentPositionRightLeft = 1
 
         if (this.currentPlayerPosition - indiceAdjacentPositionUpDown >= 0 &&
-            this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionUpDown].id === this.enemyplayer) {
+            this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionUpDown].id === this.enemyplayer.nameCharacter) {
 
             this.startFight();
 
         } else if (this.currentPlayerPosition + indiceAdjacentPositionUpDown <= 99 &&
-            this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionUpDown].id === this.enemyplayer) {
+            this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionUpDown].id === this.enemyplayer.nameCharacter) {
 
             this.startFight();
 
         } else if (this.currentPlayerPosition - indiceAdjacentPositionRightLeft >= 0 &&
-            this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionRightLeft].id === this.enemyplayer) {
+            this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter) {
 
             this.startFight();
 
         } else if (this.currentPlayerPosition + indiceAdjacentPositionRightLeft <= 99 &&
-            this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionRightLeft].id === this.enemyplayer) {
+            this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter) {
 
             this.startFight();
 
@@ -221,60 +219,83 @@ class Game {
 
             this.nextRound();
         }
-
     }
 
     startFight() {
-        // this.displayQuestion();
-        document.getElementById("defendOrAttackQuestion").innerHTML = `${this.currentPlayer}, souhaitez-vous attaquer votre ennemi ou vous défendre ?`;
+        this.displayQuestion();
+        this.eventAttackBtn();
+        this.eventDefendBtn();
+    }
+
+    displayQuestion() {
+        document.getElementById("defendOrAttackQuestion").innerHTML = `${this.currentPlayer.nameCharacter}, souhaitez-vous attaquer votre ennemi ou vous défendre ?`;
         document.getElementById("defendOrAttack").style.display = "flex";
+    }
 
-
-        // On met un événement sur les boutons
-        document.getElementById("attack").addEventListener("click", () => {
+    eventAttackBtn() {
+        document.getElementById("attack").addEventListener("click", (e) => {
             if (this.enemyplayer.defenseMode === true) {
 
-                this.enemyplayer.health = this.enemyplayer.health - this.currentPlayerInvocation.damage / 2;
+                this.enemyplayer.health = this.enemyplayer.health - this.currentPlayer.invocation.damage / 2;
 
             } else {
-                // console.log(this.currentPlayerInvocation.damage);
-                this.enemyplayer.health = this.enemyplayer.health - this.currentPlayerInvocation.damage;
+
+                this.enemyplayer.health = this.enemyplayer.health - this.currentPlayer.invocation.damage;
             }
 
-            document.getElementById(`${this.enemyplayer}HealthPoints`).innerHTML = this.enemyplayer.health;
-            this.currentPlayer.defenseMode = false;
-        })
+            document.getElementById(`${this.enemyplayer.nameCharacter}HealthPoints`).innerHTML = this.enemyplayer.health;
 
-        document.getElementById("defend").addEventListener("click", () => {
+            this.currentPlayer.defenseMode = false;
+
+            e.stopImmediatePropagation();
+
+            // document.getElementById("attack").removeEventListener("click", (e) => {});
+            // document.getElementById("defend").removeEventListener("click", (e) => {});
+
+            this.endGame();
+        })
+    }
+
+    eventDefendBtn() {
+        document.getElementById("defend").addEventListener("click", (e) => {
+
             this.currentPlayer.defenseMode = true;
 
+            e.stopImmediatePropagation();
+
+            // document.getElementById("attack").removeEventListener("click", (e) => {});
+            // document.getElementById("defend").removeEventListener("click", (e) => {});
+
+            this.endGame();
         })
+    }
 
-        // On vérifie si un des joueurs a ses points de vie inférieur ou égal à 0
-        if (cloud.health <= 0) {
-            alert("cloud est mort");
-        } else if (sephiroth.health <= 0) {
-            alert("sephiroth est mort");
+    endGame() {
+        if (cloud.health <= 0 || sephiroth.health <= 0) {
+
+            alert(`${this.enemyplayer.nameCharacter} est mort, ${this.currentPlayer.nameCharacter} remporte la victoire`);
+
+            document.location.reload();
+
         } else {
-            this.changeCurrentAndEnemyPlayer();
-            // this.startFight();
 
+            this.changeCurrentAndEnemyPlayer();
+
+            this.startFight();
         }
     }
 
-    // displayQuestion() {
-    //
-    // }
-
     changeCurrentAndEnemyPlayer() {
-        if (this.currentPlayer === "cloud") {
-            this.currentPlayer = "sephiroth";
-            this.enemyplayer = "cloud";
-        } else {
-            this.currentPlayer = "cloud";
-            this.enemyplayer = "sephiroth";
-        }
+        if (this.currentPlayer === cloud) {
 
+            this.currentPlayer = sephiroth;
+            this.enemyplayer = cloud;
+
+        } else {
+
+            this.currentPlayer = cloud;
+            this.enemyplayer = sephiroth;
+        }
     }
 
     nextRound = () => {
