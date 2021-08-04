@@ -8,6 +8,7 @@ class Map {
         this.generateObstacle();
         this.generateInvocation();
         this.generateCharacters();
+        this.displayCharacteristicsCharacters();
     }
 
     generateMap() {
@@ -154,6 +155,17 @@ class Map {
             characterNameIndice++;
         }
 
+    }
+
+    displayCharacteristicsCharacters() {
+        // On affiche les caractéristique de chaque joueur
+        document.getElementById("cloudName").innerHTML = cloud.nameCharacter;
+        document.getElementById("cloudHealthPoints").innerHTML = cloud.health;
+        document.getElementById("cloudInvocationPossessed").innerHTML = cloud.invocation;
+
+        document.getElementById("sephirothName").innerHTML = sephiroth.nameCharacter;
+        document.getElementById("sephirothHealthPoints").innerHTML = sephiroth.health;
+        document.getElementById("sephirothInvocationPossessed").innerHTML = sephiroth.invocation;
     }
 
 }
