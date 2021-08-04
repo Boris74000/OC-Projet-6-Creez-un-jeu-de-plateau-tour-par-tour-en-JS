@@ -46,4 +46,15 @@ td {
   background-color: blue;
 }
 
+.characteristicsCharacters {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#defendOrAttack {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
 /*# sourceMappingURL=style.css.map */
