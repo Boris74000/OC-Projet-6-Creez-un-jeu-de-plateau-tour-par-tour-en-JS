@@ -225,8 +225,46 @@ class Game {
     }
 
     startFight() {
-        alert('combat qui débute');
+        // this.displayQuestion();
+        document.getElementById("defendOrAttackQuestion").innerHTML = `${this.currentPlayer}, souhaitez-vous attaquer votre ennemi ou vous défendre ?`;
+        document.getElementById("defendOrAttack").style.display = "flex";
+
+
+        // On met un événement sur les boutons
+        document.getElementById("attack").addEventListener("click", () => {
+            if (this.enemyplayer.defenseMode === true) {
+
+                this.enemyplayer.health = this.enemyplayer.health - this.currentPlayerInvocation.damage / 2;
+
+            } else {
+                // console.log(this.currentPlayerInvocation.damage);
+                this.enemyplayer.health = this.enemyplayer.health - this.currentPlayerInvocation.damage;
+            }
+
+            document.getElementById(`${this.enemyplayer}HealthPoints`).innerHTML = this.enemyplayer.health;
+            this.currentPlayer.defenseMode = false;
+        })
+
+        document.getElementById("defend").addEventListener("click", () => {
+            this.currentPlayer.defenseMode = true;
+
+        })
+
+        // On vérifie si un des joueurs a ses points de vie inférieur ou égal à 0
+        if (cloud.health <= 0) {
+            alert("cloud est mort");
+        } else if (sephiroth.health <= 0) {
+            alert("sephiroth est mort");
+        } else {
+            this.changeCurrentAndEnemyPlayer();
+            // this.startFight();
+
+        }
     }
+
+    // displayQuestion() {
+    //
+    // }
 
     changeCurrentAndEnemyPlayer() {
         if (this.currentPlayer === "cloud") {
@@ -236,6 +274,7 @@ class Game {
             this.currentPlayer = "cloud";
             this.enemyplayer = "sephiroth";
         }
+
     }
 
     nextRound = () => {
