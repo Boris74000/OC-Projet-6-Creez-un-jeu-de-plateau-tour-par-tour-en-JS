@@ -1,19 +1,34 @@
 .chocoMog {
-    background-color: yellow;
+    background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/choco_mog2.png");
+    background-size: contain;
 }
 
 .titan {
-    background-color: brown;
+    background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/titan2.jpg");
 }
 
 .shiva {
-    background-color: lightseagreen;
+    background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/shiva2.gif");
 }
 
 .odin {
-    background-color: wheat;
+    background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/odin_gif.gif");
 }
 
 .knightsOfTheRoundTable {
-    background-color: darkgoldenrod;
+    background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/chevalier.gif");
+}
+
+.chocoMog, .shiva, .odin, .titan, .knightsOfTheRoundTable {
+    background-size: cover;
+}
+
+.shiva, .odin, .knightsOfTheRoundTable {
+    background-position: -16px;
+}
+
+.characteristicsInvocation {
+    order: 3;
+    display: grid;
+    grid-template: repeat(2, 2fr) / repeat(2, 2fr);
 }

@@ -3,6 +3,10 @@ table {
     margin: auto;
     width: 700px;
     height: 700px;
+    background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/midgar_1556_875.png");
+    background-position: -450px;
+    max-width: 100%;
+    order: 2;
 }
 
 td {
@@ -10,6 +14,6 @@ td {
 }
 
 .wayPossible {
-    background-color: #ceb9b9;
+    background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/sparkle-glitter.gif");
     box-shadow: 1px 5px 15px 5px #000000;
 }
