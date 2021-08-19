@@ -1,5 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0 1rem;
+}
+
+img {
+  width: 100%;
+}
+
 h1 {
   text-align: center;
+}
+
+.containerGame {
+  display: flex;
+  flex-direction: column;
 }
 
 table {
@@ -7,6 +25,10 @@ table {
   margin: auto;
   width: 700px;
   height: 700px;
+  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/midgar_1556_875.png");
+  background-position: -450px;
+  max-width: 100%;
+  order: 2;
 }
 
 td {
@@ -14,41 +36,66 @@ td {
 }
 
 .wayPossible {
-  background-color: #ceb9b9;
+  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/sparkle-glitter.gif");
   box-shadow: 1px 5px 15px 5px #000000;
 }
 
 .obstacle {
-  background-color: black;
+  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/glitch.gif");
+  background-size: cover;
 }
 
 .chocoMog {
-  background-color: yellow;
+  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/choco_mog2.png");
+  background-size: contain;
 }
 
 .titan {
-  background-color: brown;
+  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/titan2.jpg");
 }
 
 .shiva {
-  background-color: lightseagreen;
+  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/shiva2.gif");
 }
 
 .odin {
-  background-color: wheat;
+  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/odin_gif.gif");
 }
 
 .knightsOfTheRoundTable {
-  background-color: darkgoldenrod;
+  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/chevalier.gif");
 }
 
-#cloud, #sephiroth {
-  background-color: blue;
+.chocoMog, .shiva, .odin, .titan, .knightsOfTheRoundTable {
+  background-size: cover;
+}
+
+.shiva, .odin, .knightsOfTheRoundTable {
+  background-position: -16px;
+}
+
+.characteristicsInvocation {
+  order: 3;
+  display: grid;
+  grid-template: repeat(2, 2fr)/repeat(2, 2fr);
+}
+
+#sephiroth {
+  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/sephiroth.gif");
+}
+
+#cloud {
+  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/cloud.gif");
+}
+
+#sephiroth, #cloud {
+  background-size: cover;
+  background-position: unset;
 }
 
 .characteristicsCharacters {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 #defendOrAttack {
