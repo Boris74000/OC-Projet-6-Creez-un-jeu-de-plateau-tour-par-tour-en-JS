@@ -8,41 +8,118 @@
     </head>
     <body>
         <h1>Créez un jeu de plateau tour par tour en JS</h1>
+        <div class="containerGame">
+            <table></table>
 
-        <table></table>
-
-        <div id="defendOrAttack">
-            <p id="defendOrAttackQuestion"></p>
-            <div>
-                <button id="attack">Attaquer</button>
-                <button id="defend">Défendre</button>
+            <div id="defendOrAttack">
+                <p id="defendOrAttackQuestion"></p>
+                <div>
+                    <button id="attack">Attaquer</button>
+                    <button id="defend">Défendre</button>
+                </div>
             </div>
+
+            <div class="characteristicsCharacters">
+                <div id="cloudCharacteristics">
+                    <div class="namePlayer">
+                        <span id="cloudName"></span>
+                    </div>
+                    <div>
+                        <img src="img/cloud_h_174.gif" alt="un gif du personnage Cloud">
+                    </div>
+                    <div class="healthPoints">
+                        <p>Health Point</p>
+                        <p id="cloudHealthPoints"></p>
+                    </div>
+                    <div class="invocationPossessed">
+                        <p>Invocation</p>
+                        <span id="cloudInvocationPossessed"></span>
+                    </div>
+                </div>
+
+                <div id="sephirothCharacteristics">
+                    <div class="namePlayer">
+                        <span id="sephirothName"></span>
+                    </div>
+                    <div>
+                        <img src="img/sephiroth_h_174.gif" alt="un gif du personnage Sephiroth">
+                    </div>
+                    <div class="healthPoints">
+                        <p>Health Point</p>
+                        <p id="sephirothHealthPoints"></p>
+                    </div>
+                    <div class="invocationPossessed">
+                        <p>Invocation</p>
+                        <span id="sephirothInvocationPossessed"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="characteristicsInvocation">
+                <div id="chocoMogCharacteristics">
+                    <div class="nameInvocation">
+                        <span>Choco/Mog</span>
+                    </div>
+                    <div>
+                        <img src="img/choco_mog2.png" alt="une image de l'invocation Choco/Mog du jeu Final Fantasy 7">
+                    </div>
+                    <div class="damage">
+                        <span>10 PTS</span>
+                    </div>
+                </div>
+
+                <div id="shivaCharacteristics">
+                    <div class="nameInvocation">
+                        <span>Shiva</span>
+                    </div>
+                    <div>
+                        <img src="img/shiva_jpg.jpg" alt="une image de l'invocation Shiva du jeu Final Fantasy 7">
+                    </div>
+                    <div class="damage">
+                        <span>15 PTS</span>
+                    </div>
+                </div>
+
+                <div id="titanCharacteristics">
+                    <div class="nameInvocation">
+                        <span>Titan</span>
+                    </div>
+                    <div>
+                        <img src="img/titan2.jpg" alt="une image de l'invocation Titan du jeu Final Fantasy 7">
+                    </div>
+                    <div class="damage">
+                        <span>20 PTS</span>
+                    </div>
+                </div>
+
+                <div id="odinCharacteristics">
+                    <div class="nameInvocation">
+                        <span>Odin</span>
+                    </div>
+                    <div>
+                        <img src="img/odin.jpg" alt="une image de l'invocation Odin du jeu Final Fantasy 7">
+                    </div>
+                    <div class="damage">
+                        <span>25 PTS</span>
+                    </div>
+                </div>
+
+                <div id="knightsOfTheRoundTableCharacteristics">
+                    <div class="nameInvocation">
+                        <span>Chevaliers de la table ronde</span>
+                    </div>
+                    <div>
+                        <img src="img/chevalier2.jpg" alt="une image de l'invocation Fin Ultime du jeu Final Fantasy 7">
+                    </div>
+                    <div class="damage">
+                        <span>30 PTS</span>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="characteristicsCharacters">
-            <div id="cloudCharacteristics">
-                <div class="namePlayer">
-                    <span id="cloudName"></span>
-                </div>
-                <div class="healthPoints">
-                    <span id="cloudHealthPoints"></span>
-                </div>
-                <div class="invocationPossessed">
-                    <span id="cloudInvocationPossessed"></span>
-                </div>
-            </div>
-            <div id="sephirothCharacteristics">
-                <div class="namePlayer">
-                    <span id="sephirothName"></span>
-                </div>
-                <div class="healthPoints">
-                    <span id="sephirothHealthPoints"></span>
-                </div>
-                <div class="invocationPossessed">
-                    <span id="sephirothInvocationPossessed"></span>
-                </div>
-            </div>
-        </div>
 
 
 
