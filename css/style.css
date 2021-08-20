@@ -5,6 +5,7 @@
 body {
   margin: 0;
   padding: 0 1rem;
+  background-color: #5A8EB8;
 }
 
 img {
@@ -22,13 +23,12 @@ h1 {
 
 table {
   border-collapse: collapse;
-  margin: auto;
   width: 700px;
   height: 700px;
   background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/midgar_1556_875.png");
   background-position: -450px;
   max-width: 100%;
-  order: 2;
+  order: 3;
 }
 
 td {
@@ -40,6 +40,24 @@ td {
   box-shadow: 1px 5px 15px 5px #000000;
 }
 
+.charactersAndMap {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .charactersAndMap {
+    flex-direction: row;
+  }
+
+  table {
+    order: unset;
+  }
+
+  .charactersAndMap {
+    justify-content: space-evenly;
+  }
+}
 .obstacle {
   background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/glitch.gif");
   background-size: cover;
@@ -78,8 +96,22 @@ td {
   order: 3;
   display: grid;
   grid-template: repeat(2, 2fr)/repeat(2, 2fr);
+  grid-gap: 2rem;
+}
+.characteristicsInvocation p {
+  text-align: center;
 }
 
+@media (min-width: 768px) {
+  .characteristicsInvocation {
+    grid-template: repeat(2, 2fr)/repeat(3, 2fr);
+  }
+}
+@media (min-width: 768px) {
+  .characteristicsInvocation {
+    grid-template: repeat(1, 2fr)/repeat(5, 2fr);
+  }
+}
 #sephiroth {
   background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/sephiroth.gif");
 }
@@ -93,15 +125,56 @@ td {
   background-position: unset;
 }
 
-.characteristicsCharacters {
+.characters, .characteristicsCharacters {
   display: flex;
   justify-content: center;
 }
 
+#cloudCharacteristics p, #sephirothCharacteristics p {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  #cloudCharacteristics {
+    padding-right: 1rem;
+  }
+
+  #sephirothCharacteristics {
+    padding-left: 1rem;
+  }
+
+  #cloudCharacteristics, #sephirothCharacteristics {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 #defendOrAttack {
   display: none;
   flex-direction: column;
   align-items: center;
+}
+
+#startGameScreen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #000000e6;
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#startGameScreen h1, #startGameScreen h2 {
+  text-align: center;
+}
+#startGameScreen #startGameBtn {
+  width: max-content;
+  border-radius: unset;
+  padding: 0.5rem 1rem;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=style.css.map */
