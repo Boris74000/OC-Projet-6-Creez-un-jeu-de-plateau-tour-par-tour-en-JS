@@ -4,4 +4,26 @@
     align-items: center;
 }
 
-
+#startGameScreen {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #000000e6;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    h1, h2 {
+        text-align: center;
+    }
+    
+    #startGameBtn {
+        width: max-content;
+        border-radius: unset;
+        padding: 0.5rem 1rem;
+        margin: 0 auto;
+    }
+}

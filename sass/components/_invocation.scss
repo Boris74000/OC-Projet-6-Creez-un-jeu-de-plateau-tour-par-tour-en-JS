@@ -31,4 +31,21 @@
     order: 3;
     display: grid;
     grid-template: repeat(2, 2fr) / repeat(2, 2fr);
+    grid-gap: 2rem;
+    
+    p {
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .characteristicsInvocation {
+        grid-template: repeat(2, 2fr) / repeat(3, 2fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .characteristicsInvocation {
+        grid-template: repeat(1, 2fr) / repeat(5, 2fr);
+    }
 }
