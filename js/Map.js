@@ -141,11 +141,9 @@ class Map {
 
     displayCharacteristicsCharacters() {
         // On affiche les caractéristique de chaque joueur
-        document.getElementById("cloudName").innerHTML = cloud.nameCharacter;
         document.getElementById("cloudHealthPoints").innerHTML = cloud.health;
         document.getElementById("cloudInvocationPossessed").innerHTML = cloud.invocation.nameInvocation;
 
-        document.getElementById("sephirothName").innerHTML = sephiroth.nameCharacter;
         document.getElementById("sephirothHealthPoints").innerHTML = sephiroth.health;
         document.getElementById("sephirothInvocationPossessed").innerHTML = sephiroth.invocation.nameInvocation;
     }
