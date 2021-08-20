@@ -4,6 +4,28 @@ class Game {
         this.enemyplayer = sephiroth;
     }
 
+    createDivCharacters() {
+        window.onload = function () {
+            if (window.screen.width < 768 ) {
+                const parent = document.getElementsByClassName("charactersAndMap");
+                const containerCharacteristicsCharacters = document.createElement("div");
+                const cloudCharacteristics = document.getElementById("cloudCharacteristics");
+                const sephirothCharacteristics = document.getElementById("sephirothCharacteristics");
+
+                containerCharacteristicsCharacters.classList.add("characters");
+                parent[0].appendChild(containerCharacteristicsCharacters);
+                containerCharacteristicsCharacters.appendChild(cloudCharacteristics);
+                containerCharacteristicsCharacters.appendChild(sephirothCharacteristics);
+            }
+        }
+    }
+
+    hideStartGameScreen() {
+        $("#startGameBtn").on("click", function () {
+            $("#startGameScreen").fadeOut("3000");
+        })
+    }
+
     getCurrentPlayerPosition() {
         this.cellsTd = document.getElementsByTagName('td');
         for (let i = 0; i < this.cellsTd.length; i++) {
