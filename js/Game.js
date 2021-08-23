@@ -1,3 +1,5 @@
+"use strict";
+
 class Game {
     constructor() {
         this.currentPlayer = cloud;
@@ -138,25 +140,91 @@ class Game {
         }
     }
 
+
     checkElClicked() {
-       document.addEventListener("click", (e) => {
-           if (e.target.classList.contains("wayPossible")) {
-               this.moveCharacter(e);
-               e.stopImmediatePropagation();
+
+        // Récupérer la position du joueur actuel
+
+        // Si touche flèche haut appuyée, vérifier si la classe de la case index position joueur actuel - 10 = "wayPossible"
+        // Si touche flèche bas appuyée, vérifier si la classe de la case index position joueur actuel + 10 = "wayPossible"
+        // Si touche flèche gauche appuyée, vérifier si la classe de la case index position joueur actuel - 1 = "wayPossible"
+        // Si touche flèche droite appuyée, vérifier si la classe de la case index position joueur actuel + 1 = "wayPossible"
+
+        // Si la classe de la case index position joueur actuel - 10 != "wayPossible" => alert('déplacement impossible')
+        // Sinon on déplace le joueur
+
+       let keyPressCount = 0;
+
+       document.addEventListener("keyup", (e) => {
+           const keyboardPressed = e.key;
+
+           if (keyboardPressed === 'ArrowDown') {
+               // alert("ok");
+               // console.log(e);
+               this.cellMovement = this.cellsTd[this.currentPlayerPosition + 10];
+               if (this.cellMovement.classList.contains("wayPossible")) {
+                   // alert('wayPossible');
+                   keyPressCount++;
+                   this.moveCharacter(e);
+                   e.stopImmediatePropagation();
+               }
+
            }
+
+           if (keyboardPressed === 'ArrowUp') {
+               // alert("ok");
+               // console.log(e);
+               this.cellMovement = this.cellsTd[this.currentPlayerPosition - 10];
+               if (this.cellMovement.classList.contains("wayPossible")) {
+                   // alert('wayPossible');
+                   keyPressCount++;
+                   this.moveCharacter(e);
+                   e.stopImmediatePropagation();
+               }
+
+           }
+
+           if (keyboardPressed === 'ArrowLeft') {
+               // alert("ok");
+               // console.log(e);
+               this.cellMovement = this.cellsTd[this.currentPlayerPosition - 1];
+               if (this.cellMovement.classList.contains("wayPossible")) {
+                   // alert('wayPossible');
+                   keyPressCount++;
+                   this.moveCharacter(e);
+                   e.stopImmediatePropagation();
+               }
+
+           }
+
+           if (keyboardPressed === 'ArrowRight') {
+               // alert("ok");
+               // console.log(e);
+               this.cellMovement = this.cellsTd[this.currentPlayerPosition + 1];
+               if (this.cellMovement.classList.contains("wayPossible")) {
+                   // alert('wayPossible');
+                   keyPressCount++;
+                   this.moveCharacter(e);
+                   e.stopImmediatePropagation();
+               }
+
+           }
+           console.log(keyPressCount);
+           // alert(keyboardPressed);
+
        })
     }
 
     moveCharacter = (e) => {
         document.getElementById(this.currentPlayer.nameCharacter).removeAttribute('id');
 
-        e.target.id = this.currentPlayer.nameCharacter;
+        this.cellMovement.id = this.currentPlayer.nameCharacter;
 
-        if (e.target.classList.contains("chocoMog") ||
-            e.target.classList.contains("shiva") ||
-            e.target.classList.contains("titan") ||
-            e.target.classList.contains("odin") ||
-            e.target.classList.contains("knightsOfTheRoundTable")) {
+        if (this.cellMovement.classList.contains("chocoMog") ||
+            this.cellMovement.classList.contains("shiva") ||
+            this.cellMovement.classList.contains("titan") ||
+            this.cellMovement.classList.contains("odin") ||
+            this.cellMovement.classList.contains("knightsOfTheRoundTable")) {
 
             this.changeInvocation(e);
         }
