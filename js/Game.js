@@ -142,18 +142,7 @@ class Game {
 
 
     checkElClicked() {
-
-        // Récupérer la position du joueur actuel
-
-        // Si touche flèche haut appuyée, vérifier si la classe de la case index position joueur actuel - 10 = "wayPossible"
-        // Si touche flèche bas appuyée, vérifier si la classe de la case index position joueur actuel + 10 = "wayPossible"
-        // Si touche flèche gauche appuyée, vérifier si la classe de la case index position joueur actuel - 1 = "wayPossible"
-        // Si touche flèche droite appuyée, vérifier si la classe de la case index position joueur actuel + 1 = "wayPossible"
-
-        // Si la classe de la case index position joueur actuel - 10 != "wayPossible" => alert('déplacement impossible')
-        // Sinon on déplace le joueur
-
-       let keyPressCount = 0;
+       this.keyPressCount = 0;
 
        document.addEventListener("keyup", (e) => {
            const keyboardPressed = e.key;
@@ -164,7 +153,7 @@ class Game {
                this.cellMovement = this.cellsTd[this.currentPlayerPosition + 10];
                if (this.cellMovement.classList.contains("wayPossible")) {
                    // alert('wayPossible');
-                   keyPressCount++;
+                   this.keyPressCount++;
                    this.moveCharacter(e);
                    e.stopImmediatePropagation();
                }
@@ -177,7 +166,7 @@ class Game {
                this.cellMovement = this.cellsTd[this.currentPlayerPosition - 10];
                if (this.cellMovement.classList.contains("wayPossible")) {
                    // alert('wayPossible');
-                   keyPressCount++;
+                   this.keyPressCount++;
                    this.moveCharacter(e);
                    e.stopImmediatePropagation();
                }
@@ -190,7 +179,7 @@ class Game {
                this.cellMovement = this.cellsTd[this.currentPlayerPosition - 1];
                if (this.cellMovement.classList.contains("wayPossible")) {
                    // alert('wayPossible');
-                   keyPressCount++;
+                   this.keyPressCount++;
                    this.moveCharacter(e);
                    e.stopImmediatePropagation();
                }
@@ -202,20 +191,27 @@ class Game {
                // console.log(e);
                this.cellMovement = this.cellsTd[this.currentPlayerPosition + 1];
                if (this.cellMovement.classList.contains("wayPossible")) {
-                   // alert('wayPossible');
-                   keyPressCount++;
+                   this.keyPressCount++;
                    this.moveCharacter(e);
                    e.stopImmediatePropagation();
                }
 
            }
-           console.log(keyPressCount);
-           // alert(keyboardPressed);
+
+           if (keyboardPressed === 'Enter') {
+
+               this.nextRound();
+               e.stopImmediatePropagation();
+           }
+
+           console.log(this.keyPressCount);
 
        })
     }
 
     moveCharacter = (e) => {
+
+        document.getElementById(this.currentPlayer.nameCharacter).classList.add("wayPossible");
         document.getElementById(this.currentPlayer.nameCharacter).removeAttribute('id');
 
         this.cellMovement.id = this.currentPlayer.nameCharacter;
@@ -232,7 +228,7 @@ class Game {
         this.detectEnemy();
     }
 
-    changeInvocation(e) {
+    changeInvocation() {
         if (this.currentPlayer === cloud) {
 
             this.currentPlayerInvocation = cloud.invocation;
@@ -242,32 +238,27 @@ class Game {
             this.currentPlayerInvocation = sephiroth.invocation;
         }
 
-        for (let i = 0; i < e.target.classList.length; i++) {
+        if (this.cellMovement.classList.contains("chocoMog")) {
+            this.cellMovement.classList.replace("chocoMog", this.currentPlayerInvocation.nameInvocation);
+            this.currentPlayerInvocation = chocoMog;
 
-            switch (e.target.classList[i]) {
-                case "chocoMog":
-                    e.target.classList.replace("chocoMog", this.currentPlayerInvocation.nameInvocation);
-                    this.currentPlayerInvocation = chocoMog;
-                    break;
-                case "shiva":
-                    e.target.classList.replace("shiva", this.currentPlayerInvocation.nameInvocation);
-                    this.currentPlayerInvocation = shiva;
-                    break;
-                case "odin":
-                    e.target.classList.replace("odin", this.currentPlayerInvocation.nameInvocation);
-                    this.currentPlayerInvocation = odin;
-                    break;
-                case "titan":
-                    e.target.classList.replace("titan", this.currentPlayerInvocation.nameInvocation);
-                    this.currentPlayerInvocation = titan;
-                    break;
-                case "knightsOfTheRoundTable":
-                    e.target.classList.replace("knightsOfTheRoundTable", this.currentPlayerInvocation.nameInvocation);
-                    this.currentPlayerInvocation = knightsOfTheRoundTable;
-                    break;
-            }
+        } else if (this.cellMovement.classList.contains("shiva")) {
+            this.cellMovement.classList.replace("shiva", this.currentPlayerInvocation.nameInvocation);
+            this.currentPlayerInvocation = shiva;
 
+        } else if (this.cellMovement.classList.contains("odin")) {
+            this.cellMovement.classList.replace("odin", this.currentPlayerInvocation.nameInvocation);
+            this.currentPlayerInvocation = odin;
+
+        } else if (this.cellMovement.classList.contains("titan")) {
+            this.cellMovement.classList.replace("titan", this.currentPlayerInvocation.nameInvocation);
+            this.currentPlayerInvocation = titan;
+
+        } else if (this.cellMovement.classList.contains("knightsOfTheRoundTable")) {
+            this.cellMovement.classList.replace("knightsOfTheRoundTable", this.currentPlayerInvocation.nameInvocation);
+            this.currentPlayerInvocation = knightsOfTheRoundTable;
         }
+
 
         if (this.currentPlayer === cloud) {
             cloud.invocation = this.currentPlayerInvocation;
@@ -304,6 +295,9 @@ class Game {
             this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter) {
 
             this.startFight();
+
+        } else if (this.keyPressCount < 3) {
+            this.getCurrentPlayerPosition();
 
         } else {
 
