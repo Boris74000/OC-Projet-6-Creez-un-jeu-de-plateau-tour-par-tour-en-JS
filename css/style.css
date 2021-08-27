@@ -25,7 +25,7 @@ table {
   border-collapse: collapse;
   width: 700px;
   height: 700px;
-  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/midgar_1556_875.png");
+  background-image: url("../img/midgar_1556_875.png");
   background-position: -450px;
   max-width: 100%;
   order: 3;
@@ -36,7 +36,7 @@ td {
 }
 
 .wayPossible {
-  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/sparkle-glitter.gif");
+  background-image: url("../img/sparkle-glitter.gif");
   box-shadow: 1px 5px 15px 5px #000000;
 }
 
@@ -59,29 +59,29 @@ td {
   }
 }
 .obstacle {
-  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/glitch.gif");
+  background-image: url("../img/glitch.gif");
   background-size: cover;
 }
 
 .chocoMog {
-  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/choco_mog2.png");
+  background-image: url("../img/choco_mog2.png");
   background-size: contain;
 }
 
 .titan {
-  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/titan2.jpg");
+  background-image: url("../img/titan2.jpg");
 }
 
 .shiva {
-  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/shiva2.gif");
+  background-image: url("../img/shiva2.gif");
 }
 
 .odin {
-  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/odin_gif.gif");
+  background-image: url("../img/odin_gif.gif");
 }
 
 .knightsOfTheRoundTable {
-  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/chevalier.gif");
+  background-image: url("../img/chevalier.gif");
 }
 
 .chocoMog, .shiva, .odin, .titan, .knightsOfTheRoundTable {
@@ -113,11 +113,11 @@ td {
   }
 }
 #sephiroth {
-  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/sephiroth.gif");
+  background-image: url("../img/sephiroth.gif");
 }
 
 #cloud {
-  background-image: url("file:///C:/Users/Dauvi/Desktop/Formation%20d%C3%A9veloppeur%20frontend/Projet%206/img/cloud.gif");
+  background-image: url("../img/cloud.gif");
 }
 
 #sephiroth, #cloud {
