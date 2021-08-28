@@ -312,6 +312,7 @@ class Game {
     }
 
     displayQuestion() {
+        $("table").fadeOut("3000");
         document.getElementById("defendOrAttackQuestion").innerHTML = `${this.currentPlayer.nameCharacter}, souhaitez-vous attaquer votre ennemi ou vous défendre ?`;
         document.getElementById("defendOrAttack").style.display = "flex";
     }
