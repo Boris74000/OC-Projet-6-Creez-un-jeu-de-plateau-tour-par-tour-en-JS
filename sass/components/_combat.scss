@@ -2,6 +2,13 @@
     display: none;
     flex-direction: column;
     align-items: center;
+    background-color: #f0f8ff5e;
+    position: fixed;
+    z-index: 1;
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 1rem 1rem;
 }
 
 #startGameScreen {
@@ -15,15 +22,30 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     
     h1, h2 {
         text-align: center;
+    }
+    
+    p {
+        text-align: center;
+        font-size: 2rem;
+        margin: 0.5rem;
+    }
+    
+    div {
+        border: 5px solid #9a9998;
+        border-radius: 13px;
+        background: linear-gradient(180deg, rgba(10,12,159,1) 33%, rgba(13,12,127,1) 66%, rgba(12,14,92,1) 100%);
+        max-width: max-content;
     }
     
     #startGameBtn {
         width: max-content;
         border-radius: unset;
         padding: 0.5rem 1rem;
-        margin: 0 auto;
+        margin: 1rem auto;
+        display: block;
     }
 }

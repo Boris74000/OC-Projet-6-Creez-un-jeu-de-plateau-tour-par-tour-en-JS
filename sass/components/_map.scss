@@ -1,8 +1,6 @@
 table {
     border-collapse: collapse;
-    //margin: auto;
-    width: 700px;
-    height: 700px;
+    height: 550px;
     background-image: url("../img/midgar_1556_875.png");
     background-position: -450px;
     max-width: 100%;
@@ -30,6 +28,7 @@ td {
     
     table {
         order: unset;
+        flex-basis: 40%;
     }
     
     .charactersAndMap {

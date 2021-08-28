@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'ff7_font';
+    src: url('../font/ff7_eot.eot') format('eot'),
+    url('../font/ff7_woff.woff') format('woff'),
+    url('../font/ff7_ttf.ttf') format('truetype'),
+    url('../font/ff7_woff2.woff2') format('woff2');
+}
+
+$title_font: 'ff7_font', Arial, sans-serif;
+$paragraphe_font: "Times New Roman", Arial, sans-serif;
+$normal: 400;
+
+body {
+    font-family: $paragraphe_font;
+}
+
+h1, h2, h3 {
+    font-family: $title_font;
+    font-weight: $normal;
+    text-transform: uppercase;
+}

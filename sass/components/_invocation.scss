@@ -1,22 +1,22 @@
 .chocoMog {
-    background-image: url("../img/choco_mog2.png");
+    background-image: url("../img/choco_mog.png");
     background-size: contain;
 }
 
 .titan {
-    background-image: url("../img/titan2.jpg");
+    background-image: url("../img/titan.png");
 }
 
 .shiva {
-    background-image: url("../img/shiva2.gif");
+    background-image: url("../img/shiva.png");
 }
 
 .odin {
-    background-image: url("../img/odin_gif.gif");
+    background-image: url("../img/odin.png");
 }
 
 .knightsOfTheRoundTable {
-    background-image: url("../img/chevalier.gif");
+    background-image: url("../img/chevalier.png");
 }
 
 .chocoMog, .shiva, .odin, .titan, .knightsOfTheRoundTable {
@@ -32,6 +32,8 @@
     display: grid;
     grid-template: repeat(2, 2fr) / repeat(2, 2fr);
     grid-gap: 2rem;
+    width: 69%;
+    align-self: center;
     
     p {
         text-align: center;

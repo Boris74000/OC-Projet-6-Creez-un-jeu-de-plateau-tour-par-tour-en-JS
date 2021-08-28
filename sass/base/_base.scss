@@ -6,14 +6,16 @@ body {
     margin: 0;
     padding: 0 1rem;
     background-color: #5A8EB8;
+    font-family: 'ff7_font', 'Arial', 'sans-serif';
 }
 
 img {
     width: 100%;
 }
 
-h1 {
-  text-align: center;
+h1, h2, h3 {
+    text-align: center;
+    font-weight: 400;
 }
 
 .containerGame {
