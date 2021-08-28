@@ -6,14 +6,16 @@ body {
   margin: 0;
   padding: 0 1rem;
   background-color: #5A8EB8;
+  font-family: "ff7_font", "Arial", "sans-serif";
 }
 
 img {
   width: 100%;
 }
 
-h1 {
+h1, h2, h3 {
   text-align: center;
+  font-weight: 400;
 }
 
 .containerGame {
@@ -21,10 +23,23 @@ h1 {
   flex-direction: column;
 }
 
+@font-face {
+  font-family: "ff7_font";
+  src: url("../font/ff7_eot.eot") format("eot"), url("../font/ff7_woff.woff") format("woff"), url("../font/ff7_ttf.ttf") format("truetype"), url("../font/ff7_woff2.woff2") format("woff2");
+}
+body {
+  font-family: "Times New Roman", Arial, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: "ff7_font", Arial, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
 table {
   border-collapse: collapse;
-  width: 700px;
-  height: 700px;
+  height: 550px;
   background-image: url("../img/midgar_1556_875.png");
   background-position: -450px;
   max-width: 100%;
@@ -52,6 +67,7 @@ td {
 
   table {
     order: unset;
+    flex-basis: 40%;
   }
 
   .charactersAndMap {
@@ -64,24 +80,24 @@ td {
 }
 
 .chocoMog {
-  background-image: url("../img/choco_mog2.png");
+  background-image: url("../img/choco_mog.png");
   background-size: contain;
 }
 
 .titan {
-  background-image: url("../img/titan2.jpg");
+  background-image: url("../img/titan.png");
 }
 
 .shiva {
-  background-image: url("../img/shiva2.gif");
+  background-image: url("../img/shiva.png");
 }
 
 .odin {
-  background-image: url("../img/odin_gif.gif");
+  background-image: url("../img/odin.png");
 }
 
 .knightsOfTheRoundTable {
-  background-image: url("../img/chevalier.gif");
+  background-image: url("../img/chevalier.png");
 }
 
 .chocoMog, .shiva, .odin, .titan, .knightsOfTheRoundTable {
@@ -97,6 +113,8 @@ td {
   display: grid;
   grid-template: repeat(2, 2fr)/repeat(2, 2fr);
   grid-gap: 2rem;
+  width: 69%;
+  align-self: center;
 }
 .characteristicsInvocation p {
   text-align: center;
@@ -113,11 +131,11 @@ td {
   }
 }
 #sephiroth {
-  background-image: url("../img/sephiroth.gif");
+  background-image: url("../img/sephiroth_gif.gif");
 }
 
 #cloud {
-  background-image: url("../img/cloud.gif");
+  background-image: url("../img/cloud_gif.gif");
 }
 
 #sephiroth, #cloud {
@@ -133,6 +151,13 @@ td {
 #cloudCharacteristics p, #sephirothCharacteristics p {
   text-align: center;
 }
+#cloudCharacteristics img, #sephirothCharacteristics img {
+  width: 50%;
+}
+#cloudCharacteristics div:nth-child(2), #sephirothCharacteristics div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+}
 
 @media (min-width: 768px) {
   #cloudCharacteristics {
@@ -147,12 +172,20 @@ td {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex-basis: 30%;
   }
 }
 #defendOrAttack {
   display: none;
   flex-direction: column;
   align-items: center;
+  background-color: #f0f8ff5e;
+  position: fixed;
+  z-index: 1;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 1rem 1rem;
 }
 
 #startGameScreen {
@@ -166,15 +199,28 @@ td {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 #startGameScreen h1, #startGameScreen h2 {
   text-align: center;
+}
+#startGameScreen p {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0.5rem;
+}
+#startGameScreen div {
+  border: 5px solid #9a9998;
+  border-radius: 13px;
+  background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
+  max-width: max-content;
 }
 #startGameScreen #startGameBtn {
   width: max-content;
   border-radius: unset;
   padding: 0.5rem 1rem;
-  margin: 0 auto;
+  margin: 1rem auto;
+  display: block;
 }
 
 /*# sourceMappingURL=style.css.map */
