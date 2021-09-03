@@ -39,9 +39,21 @@ class Game {
     }
 
     generateWayVerticallyUp() {
+        // alert("ici");
+        // console.log(this.keyPressCount);
+        //
         let indiceVerticallyUp = 10;
+        //
+        this.indiceWayPossible = 0;
 
-        for (let i = 0; i < 3; i++) {
+        if (this.keyPressCount > 0 && this.keyPressCount < 3) {
+            this.indiceWayPossible = this.keyPressCount
+        } else {
+            this.indiceWayPossible = 0;
+        }
+        // console.log(this.indiceWayPossible);
+
+        for (let i = this.indiceWayPossible; i < 3; i++) {
 
             if (this.currentPlayerPosition - indiceVerticallyUp >= 0 &&
                 this.cellsTd[this.currentPlayerPosition - indiceVerticallyUp].className !== "obstacle" &&
@@ -61,7 +73,7 @@ class Game {
     generateWayVerticallyDown() {
         let indiceVerticallyDown = 10;
 
-        for (let i = 0; i < 3; i++) {
+        for (let i = this.indiceWayPossible; i < 3; i++) {
 
             if (this.currentPlayerPosition + indiceVerticallyDown <= 99 &&
                 this.cellsTd[this.currentPlayerPosition + indiceVerticallyDown].className !== "obstacle" &&
@@ -81,7 +93,7 @@ class Game {
     generateWayHorizontallyLeft() {
         let indiceHorizontallyLeft = 1;
 
-        for (let i = 0; i < 3; i++) {
+        for (let i = this.indiceWayPossible; i < 3; i++) {
 
             // On récupère la dizaine de l'indice de la position du personnage
             let unitsPositionCharacter = this.currentPlayerPosition % 10;
@@ -112,7 +124,7 @@ class Game {
     generateWayHorizontallyRight() {
         let indiceHorizontallyRight = 1;
 
-        for (let i = 0; i < 3; i++) {
+        for (let i = this.indiceWayPossible; i < 3; i++) {
 
             // On récupère la dizaine de l'indice de la position du personnage
             let unitsPositionCharacter = this.currentPlayerPosition % 10;
@@ -204,7 +216,7 @@ class Game {
                e.stopImmediatePropagation();
            }
 
-           console.log(this.keyPressCount);
+           // console.log(this.keyPressCount);
 
        })
     }
@@ -220,7 +232,7 @@ class Game {
             this.cellMovement.classList.contains("shiva") ||
             this.cellMovement.classList.contains("titan") ||
             this.cellMovement.classList.contains("odin") ||
-            this.cellMovement.classList.contains("knightsOfTheRoundTable")) {
+            this.cellMovement.classList.contains("knightsOfRound")) {
 
             this.changeInvocation(e);
         }
@@ -239,25 +251,31 @@ class Game {
         }
 
         if (this.cellMovement.classList.contains("chocoMog")) {
-            this.cellMovement.classList.replace("chocoMog", this.currentPlayerInvocation.nameInvocation);
+
+            this.cellMovement.classList.replace("chocoMog", this.currentPlayerInvocation.classNameInvocation);
             this.currentPlayerInvocation = chocoMog;
 
         } else if (this.cellMovement.classList.contains("shiva")) {
-            this.cellMovement.classList.replace("shiva", this.currentPlayerInvocation.nameInvocation);
+
+            this.cellMovement.classList.replace("shiva", this.currentPlayerInvocation.classNameInvocation);
             this.currentPlayerInvocation = shiva;
 
         } else if (this.cellMovement.classList.contains("odin")) {
-            this.cellMovement.classList.replace("odin", this.currentPlayerInvocation.nameInvocation);
+
+            this.cellMovement.classList.replace("odin", this.currentPlayerInvocation.classNameInvocation);
             this.currentPlayerInvocation = odin;
 
         } else if (this.cellMovement.classList.contains("titan")) {
-            this.cellMovement.classList.replace("titan", this.currentPlayerInvocation.nameInvocation);
+
+            this.cellMovement.classList.replace("titan", this.currentPlayerInvocation.classNameInvocation);
             this.currentPlayerInvocation = titan;
 
-        } else if (this.cellMovement.classList.contains("knightsOfTheRoundTable")) {
-            this.cellMovement.classList.replace("knightsOfTheRoundTable", this.currentPlayerInvocation.nameInvocation);
+        } else if (this.cellMovement.classList.contains("knightsOfRound")) {
+
+            this.cellMovement.classList.replace("knightsOfRound", this.currentPlayerInvocation.classNameInvocation);
             this.currentPlayerInvocation = knightsOfTheRoundTable;
         }
+
 
 
         if (this.currentPlayer === cloud) {
@@ -268,10 +286,13 @@ class Game {
             sephiroth.invocation = this.currentPlayerInvocation;
             document.getElementById("sephirothInvocationPossessed").innerHTML = sephiroth.invocation.nameInvocation;
         }
+
+        // console.log(this.currentPlayerInvocation);
     }
 
     detectEnemy() {
         this.getCurrentPlayerPosition();
+        // console.log(this.keyPressCount)
 
         let indiceAdjacentPositionUpDown = 10
         let indiceAdjacentPositionRightLeft = 1
@@ -297,7 +318,8 @@ class Game {
             this.startFight();
 
         } else if (this.keyPressCount < 3) {
-            this.getCurrentPlayerPosition();
+
+            this.nextMove();
 
         } else {
 
@@ -306,6 +328,7 @@ class Game {
     }
 
     startFight() {
+        // audio.playAudioFighting();
         this.displayQuestion();
         this.eventAttackBtn();
         this.eventDefendBtn();
@@ -313,7 +336,7 @@ class Game {
 
     displayQuestion() {
         $("table").fadeOut("3000");
-        document.getElementById("defendOrAttackQuestion").innerHTML = `${this.currentPlayer.nameCharacter}, souhaitez-vous attaquer votre ennemi ou vous défendre ?`;
+        document.getElementById("defendOrAttackQuestion").innerHTML = `<span class="nameCharacterInsideQuestion">${this.currentPlayer.nameCharacter}</span>, would you like to attack your enemy or defend yourself ?`;
         document.getElementById("defendOrAttack").style.display = "flex";
     }
 
@@ -383,12 +406,26 @@ class Game {
         }
     }
 
-    nextRound = () => {
+    deleteWayPossible() {
         // On efface le chemin proposé du joueur actuel
         this.wayPossibleCells = Array.from(document.getElementsByClassName("wayPossible"));
         for (let i = 0; i < this.wayPossibleCells.length; i++) {
             this.wayPossibleCells[i].classList.remove("wayPossible");
         }
+    }
+
+    nextMove() {
+        this.deleteWayPossible();
+        this.getCurrentPlayerPosition();
+        this.generateWayVerticallyUp();
+        this.generateWayVerticallyDown();
+        this.generateWayHorizontallyLeft();
+        this.generateWayHorizontallyRight();
+    }
+
+    nextRound = () => {
+        this.keyPressCount = 0;
+        this.deleteWayPossible();
         this.changeCurrentAndEnemyPlayer();
 
         // On relance les méthodes
