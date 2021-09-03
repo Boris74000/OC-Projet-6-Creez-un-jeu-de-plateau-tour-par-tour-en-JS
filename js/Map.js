@@ -75,7 +75,7 @@ class Map {
     }
 
     stylizingInvocation() {
-        this.invocationNames = ["chocoMog", "shiva", "titan", "odin", "knightsOfTheRoundTable"];
+        this.invocationNames = ["chocoMog", "shiva", "titan", "odin", "knightsOfRound"];
         let invocationNamesIndice = 1;
 
         for (let i = 13; i < this.arrayContainer.length; i++) {
