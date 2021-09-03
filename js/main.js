@@ -1,15 +1,20 @@
-let chocoMog = new Invocation("chocoMog", 10);
-let shiva = new Invocation("shiva", 15);
-let titan = new Invocation("titan", 20);
-let odin = new Invocation("odin", 25);
-let knightsOfTheRoundTable = new Invocation("Chevalier de la table ronde", 30);
+const chocoMog = new Invocation("Choco/Mog", "chocoMog",10);
+const shiva = new Invocation("Shiva","shiva", 15);
+const titan = new Invocation("Titan","titan", 20);
+const odin = new Invocation("Odin","odin", 25);
+const knightsOfTheRoundTable = new Invocation("Knights Of Round", "knightsOfRound", 30);
 
-let cloud = new Character("cloud", 100, chocoMog, true, false);
-let sephiroth = new Character("sephiroth", 100, chocoMog, false, false);
+const cloud = new Character("cloud", 100, chocoMog, true, false);
+const sephiroth = new Character("sephiroth", 100, chocoMog, false, false);
 
-let mapBoardGame = new Map(10,10);
+const mapBoardGame = new Map(10,10);
 
-let newGame = new Game();
+const newGame = new Game();
+
+const audio = new GameMusic();
+
+audio.playMusic();
+audio.stopMusic();
 
 newGame.createDivCharacters();
 newGame.hideStartGameScreen();
