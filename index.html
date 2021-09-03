@@ -10,19 +10,25 @@
     <body>
     <h1>FINAL FANTASY VII</h1>
 
+        <button id="musicOn">Music ON</button>
+        <button id="musicOff">Music OFF</button>
+        <audio id="audioFile">
+            <source src="audio/ff7_prelude.mp3" type="audio/mp3">
+        </audio>
+
         <div id="startGameScreen">
             <div>
                 <p>Replay the mythical fight between Cloud and Sephiroth</p>
                 <p>Recover the best invocation to defeat your enemy</p>
-                <button id="startGameBtn">Start</button>
+                <button id="startGameBtn" class="ff7Btn"><img src="img/cursor_png.png" alt="curseur main">Start</button>
             </div>
         </div>
 
         <div id="defendOrAttack">
             <p id="defendOrAttackQuestion"></p>
             <div>
-                <button id="attack">Attaquer</button>
-                <button id="defend">Défendre</button>
+                <button id="attack" class="ff7Btn"><img src="img/cursor_png.png" alt="curseur main">Attaquer</button>
+                <button id="defend" class="ff7Btn"><img src="img/cursor_png.png" alt="curseur main">Défendre</button>
             </div>
         </div>
 
@@ -35,7 +41,7 @@
                         <h2>Cloud</h2>
                     </div>
                     <div>
-                        <img src="img/cloud.png" alt="un gif du personnage Cloud">
+                        <img src="img/cloud_portrait_h306.jpg" alt="un portrait du personnage Cloud">
                     </div>
                     <div class="healthPoints">
                         <h3>Health Point</h3>
@@ -54,7 +60,7 @@
                         <h2>Sephiroth</h2>
                     </div>
                     <div>
-                        <img src="img/sephiroth.png" alt="un gif du personnage Sephiroth">
+                        <img src="img/sephiroth_portrait_h306.jpg" alt="un gif du personnage Sephiroth">
                     </div>
                     <div class="healthPoints">
                         <h3>Health Point</h3>
@@ -120,10 +126,10 @@
 
                 <div id="knightsOfTheRoundTableCharacteristics">
                     <div class="nameInvocation">
-                        <h3>Chevaliers de la table ronde</h3>
+                        <h3>Knights Of Round</h3>
                     </div>
                     <div>
-                        <img src="img/chevalier.png" alt="une image de l'invocation Fin Ultime du jeu Final Fantasy 7">
+                        <img src="img/chevalier2.png" alt="une image de l'invocation Fin Ultime du jeu Final Fantasy 7">
                     </div>
                     <div class="damage">
                         <p>30 PTS</p>
@@ -141,6 +147,7 @@
         <script src="js/Character.js"></script>
         <script src="js/Invocation.js"></script>
         <script src="js/Game.js"></script>
+        <script src="js/GameMusic.js"></script>
         <script src="js/main.js"></script>
 
     </body>
