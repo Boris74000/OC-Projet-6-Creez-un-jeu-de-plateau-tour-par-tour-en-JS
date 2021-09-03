@@ -1,6 +1,7 @@
 class Invocation {
-    constructor(nameInvocation, damage) {
+    constructor(nameInvocation, classNameInvocation, damage) {
         this.nameInvocation = nameInvocation;
+        this.classNameInvocation = classNameInvocation;
         this.damage = damage;
     }
 }
