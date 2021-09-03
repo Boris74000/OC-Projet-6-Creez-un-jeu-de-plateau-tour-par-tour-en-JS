@@ -7,10 +7,15 @@ body {
   padding: 0 1rem;
   background-color: #5A8EB8;
   font-family: "ff7_font", "Arial", "sans-serif";
+  color: #c4c6d2;
 }
 
 img {
   width: 100%;
+}
+
+h1 {
+  margin: 1rem 0 0;
 }
 
 h1, h2, h3 {
@@ -24,24 +29,54 @@ h1, h2, h3 {
 }
 
 @font-face {
+  font-family: "ff7_font_h1";
+  src: url("../font/ff7_h1_eot.eot") format("eot"), url("../font/ff7_h1_woff.woff") format("woff"), url("../font/ff7_h1_ttf.ttf") format("truetype"), url("../font/ff7_h1_woff2.woff2") format("woff2");
+}
+@font-face {
+  font-family: "retroGaming";
+  src: url("../font/retroGaming.eot") format("eot"), url("../font/retroGaming.woff") format("woff"), url("../font/retroGaming.ttf") format("truetype"), url("../font/retroGaming.woff2") format("woff2");
+}
+@font-face {
   font-family: "ff7_font";
-  src: url("../font/ff7_eot.eot") format("eot"), url("../font/ff7_woff.woff") format("woff"), url("../font/ff7_ttf.ttf") format("truetype"), url("../font/ff7_woff2.woff2") format("woff2");
+  src: url("../font/ff7_font_eot.eot") format("eot"), url("../font/ff7_font_woff.woff") format("woff"), url("../font/ff7_font_ttf.ttf") format("truetype");
 }
 body {
-  font-family: "Times New Roman", Arial, sans-serif;
+  font-family: "retroGaming", Arial, sans-serif;
 }
 
-h1, h2, h3 {
-  font-family: "ff7_font", Arial, sans-serif;
+h1 {
+  font-family: "ff7_font_h1", Arial, sans-serif;
   font-weight: 400;
   text-transform: uppercase;
+  font-size: 5rem;
+}
+
+h3 {
+  margin: 1rem 0 0;
+}
+
+h2, p {
+  margin: 0;
+}
+
+.ff7Btn {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: white;
+  margin: 1rem auto;
+  cursor: pointer;
+  font-family: "retroGaming", Arial, sans-serif;
+}
+.ff7Btn img {
+  padding: 0.5rem 0.5rem 0 0;
 }
 
 table {
   border-collapse: collapse;
-  height: 550px;
-  background-image: url("../img/midgar_1556_875.png");
-  background-position: -450px;
+  height: 560px;
+  background: linear-gradient(rgba(14, 13, 13, 0.5), rgba(24, 23, 23, 0.5)), url("../img/midgar_1556_875.png") -500px;
   max-width: 100%;
   order: 3;
 }
@@ -67,7 +102,7 @@ td {
 
   table {
     order: unset;
-    flex-basis: 40%;
+    flex-basis: 30%;
   }
 
   .charactersAndMap {
@@ -96,11 +131,12 @@ td {
   background-image: url("../img/odin.png");
 }
 
-.knightsOfTheRoundTable {
-  background-image: url("../img/chevalier.png");
+.knightsOfRound {
+  background-image: url("../img/chevalier2.png");
+  background-position: center;
 }
 
-.chocoMog, .shiva, .odin, .titan, .knightsOfTheRoundTable {
+.chocoMog, .shiva, .odin, .titan, .knightsOfRound {
   background-size: cover;
 }
 
@@ -113,8 +149,13 @@ td {
   display: grid;
   grid-template: repeat(2, 2fr)/repeat(2, 2fr);
   grid-gap: 2rem;
-  width: 69%;
+  width: 63%;
   align-self: center;
+  margin-top: 1rem;
+  border: 5px solid #9a9998;
+  border-radius: 13px;
+  background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
+  padding: 1rem;
 }
 .characteristicsInvocation p {
   text-align: center;
@@ -148,15 +189,31 @@ td {
   justify-content: center;
 }
 
+#cloudCharacteristics, #sephirothCharacteristics {
+  border: 5px solid #9a9998;
+  border-radius: 13px;
+  background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
+  padding: 1rem;
+}
 #cloudCharacteristics p, #sephirothCharacteristics p {
   text-align: center;
 }
 #cloudCharacteristics img, #sephirothCharacteristics img {
-  width: 50%;
+  width: 80%;
+  height: 306px;
+  object-fit: cover;
 }
 #cloudCharacteristics div:nth-child(2), #sephirothCharacteristics div:nth-child(2) {
   display: flex;
   justify-content: center;
+}
+#cloudCharacteristics .healthPoints, #cloudCharacteristics .invocationPossessed, #sephirothCharacteristics .healthPoints, #sephirothCharacteristics .invocationPossessed {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-evenly;
+}
+#cloudCharacteristics .healthPoints h3, #cloudCharacteristics .invocationPossessed h3, #sephirothCharacteristics .healthPoints h3, #sephirothCharacteristics .invocationPossessed h3 {
+  color: #56bdc1;
 }
 
 @media (min-width: 768px) {
@@ -172,20 +229,31 @@ td {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-basis: 30%;
+    flex-basis: 20%;
   }
 }
 #defendOrAttack {
+  width: 280px;
   display: none;
   flex-direction: column;
   align-items: center;
-  background-color: #f0f8ff5e;
   position: fixed;
   z-index: 1;
   top: 33%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 0 1rem 1rem;
+  border: 5px solid #9a9998;
+  border-radius: 13px;
+  background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
+  padding: 1rem;
+}
+#defendOrAttack #defendOrAttackQuestion {
+  text-align: center;
+}
+
+.nameCharacterInsideQuestion {
+  text-transform: capitalize;
 }
 
 #startGameScreen {
@@ -201,11 +269,10 @@ td {
   justify-content: center;
   align-items: center;
 }
-#startGameScreen h1, #startGameScreen h2 {
+#startGameScreen h1, #startGameScreen h2, #startGameScreen p {
   text-align: center;
 }
 #startGameScreen p {
-  text-align: center;
   font-size: 2rem;
   margin: 0.5rem;
 }
@@ -213,14 +280,19 @@ td {
   border: 5px solid #9a9998;
   border-radius: 13px;
   background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
-  max-width: max-content;
+  padding: 1rem;
 }
-#startGameScreen #startGameBtn {
-  width: max-content;
-  border-radius: unset;
-  padding: 0.5rem 1rem;
-  margin: 1rem auto;
+
+#musicOff {
+  display: none;
+}
+
+#musicOn {
   display: block;
+}
+
+#musicOn, #musicOff {
+  margin: 0 auto 1rem;
 }
 
 /*# sourceMappingURL=style.css.map */
