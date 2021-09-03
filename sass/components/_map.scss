@@ -1,8 +1,7 @@
 table {
     border-collapse: collapse;
-    height: 550px;
-    background-image: url("../img/midgar_1556_875.png");
-    background-position: -450px;
+    height: 560px;
+    background: linear-gradient(rgba(14, 13, 13, 0.5), rgba(24, 23, 23, 0.5)), url("../img/midgar_1556_875.png") -500px;
     max-width: 100%;
     order: 3;
 }
@@ -28,7 +27,7 @@ td {
     
     table {
         order: unset;
-        flex-basis: 40%;
+        flex-basis: 30%;
     }
     
     .charactersAndMap {

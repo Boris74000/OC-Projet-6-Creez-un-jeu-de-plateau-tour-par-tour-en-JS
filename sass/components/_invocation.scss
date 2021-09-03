@@ -15,11 +15,12 @@
     background-image: url("../img/odin.png");
 }
 
-.knightsOfTheRoundTable {
-    background-image: url("../img/chevalier.png");
+.knightsOfRound {
+    background-image: url("../img/chevalier2.png");
+    background-position: center;
 }
 
-.chocoMog, .shiva, .odin, .titan, .knightsOfTheRoundTable {
+.chocoMog, .shiva, .odin, .titan, .knightsOfRound {
     background-size: cover;
 }
 
@@ -32,8 +33,10 @@
     display: grid;
     grid-template: repeat(2, 2fr) / repeat(2, 2fr);
     grid-gap: 2rem;
-    width: 69%;
+    width: 63%;
     align-self: center;
+    margin-top: 1rem;
+    @include ff7WindowStyle;
     
     p {
         text-align: center;

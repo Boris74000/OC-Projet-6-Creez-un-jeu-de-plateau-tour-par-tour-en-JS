@@ -17,17 +17,30 @@
 }
 
 #cloudCharacteristics, #sephirothCharacteristics {
+    @include ff7WindowStyle;
     p {
         text-align: center;
     }
     
     img {
-        width: 50%;
+        width: 80%;
+        height: 306px;
+        object-fit: cover;
     }
     
     div:nth-child(2) {
         display: flex;
         justify-content: center;
+    }
+    
+    .healthPoints, .invocationPossessed {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-evenly;
+        
+        h3 {
+            color: $color-secondary;
+        }
     }
 }
 
@@ -44,7 +57,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        flex-basis: 30%;
+        flex-basis: 20%;
     }
     
 }

@@ -1,0 +1,14 @@
+.ff7Btn {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin: 1rem auto;
+    cursor: pointer;
+    font-family: $paragraphe_font;
+    
+    img {
+        padding: 0.5rem 0.5rem 0 0;
+    }
+}

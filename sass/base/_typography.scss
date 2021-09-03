@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'ff7_font_h1';
+    src: url('../font/ff7_h1_eot.eot') format('eot'),
+    url('../font/ff7_h1_woff.woff') format('woff'),
+    url('../font/ff7_h1_ttf.ttf') format('truetype'),
+    url('../font/ff7_h1_woff2.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'retroGaming';
+    src: url('../font/retroGaming.eot') format('eot'),
+    url('../font/retroGaming.woff') format('woff'),
+    url('../font/retroGaming.ttf') format('truetype'),
+    url('../font/retroGaming.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'ff7_font';
+    src: url('../font/ff7_font_eot.eot') format('eot'),
+    url('../font/ff7_font_woff.woff') format('woff'),
+    url('../font/ff7_font_ttf.ttf') format('truetype')
+}
+
+
+
+$h1_font: 'ff7_font_h1', Arial, sans-serif;
+$paragraphe_font: "retroGaming", Arial, sans-serif;
+$normal: 400;
+
+body {
+    font-family: $paragraphe_font;
+}
+
+h1 {
+    font-family: $h1_font;
+    font-weight: $normal;
+    text-transform: uppercase;
+    font-size: 5rem;
+}
+
+h2 {
+    //font-size: 3rem;
+}
+
+h3 {
+    //font-size: 2.5rem;
+    margin: 1rem 0 0;
+}
+
+//p {
+//    font-size: 2rem;
+//}
+
+h2, p {
+    margin: 0;
+}
