@@ -12,7 +12,7 @@
 
         <button id="musicOn">Music ON</button>
         <button id="musicOff">Music OFF</button>
-        <audio id="audioFile">
+        <audio id="audioFilePrelude">
             <source src="audio/ff7_prelude.mp3" type="audio/mp3">
         </audio>
 
@@ -21,6 +21,10 @@
                 <p>Replay the mythical fight between Cloud and Sephiroth</p>
                 <p>Recover the best invocation to defeat your enemy</p>
                 <button id="startGameBtn" class="ff7Btn"><img src="img/cursor_png.png" alt="curseur main">Start</button>
+                <audio id="audioFileCursor">
+                    <source src="audio/cursor_%20save_and_load.mp3" type="audio/mp3">
+                </audio>
+                <p id="loadingText">Loading...</p>
             </div>
         </div>
 
@@ -29,6 +33,20 @@
             <div>
                 <button id="attack" class="ff7Btn"><img src="img/cursor_png.png" alt="curseur main">Attaquer</button>
                 <button id="defend" class="ff7Btn"><img src="img/cursor_png.png" alt="curseur main">Défendre</button>
+            </div>
+        </div>
+
+        <div id="cloudVictory">
+            <div>
+                <img src="img/cloud_victory.gif" alt="gif Cloud fête sa victoire">
+                <p>Cloud win the fight</p>
+            </div>
+        </div>
+
+        <div id="sephirothVictory">
+            <div>
+                <img src="img/sephiroth_victory.gif" alt="gif Sephiroth fête sa victoire">
+                <p>Sephiroth win the fight</p>
             </div>
         </div>
 
