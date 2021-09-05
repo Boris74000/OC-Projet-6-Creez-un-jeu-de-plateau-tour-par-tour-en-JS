@@ -81,6 +81,21 @@ table {
   order: 3;
 }
 
+@keyframes blurEffect {
+  0% {
+    filter: blur(0);
+  }
+  50% {
+    filter: blur(10px);
+  }
+  100% {
+    filter: blur(50px);
+  }
+}
+.blurEffectMap {
+  animation: blurEffect 5s ease;
+}
+
 td {
   border: 1px solid black;
 }
@@ -256,7 +271,7 @@ td {
   text-transform: capitalize;
 }
 
-#startGameScreen {
+#startGameScreen, #cloudVictory, #sephirothVictory {
   position: absolute;
   top: 0;
   right: 0;
@@ -268,19 +283,31 @@ td {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
-#startGameScreen h1, #startGameScreen h2, #startGameScreen p {
+#startGameScreen h1, #startGameScreen h2, #startGameScreen p, #cloudVictory h1, #cloudVictory h2, #cloudVictory p, #sephirothVictory h1, #sephirothVictory h2, #sephirothVictory p {
   text-align: center;
 }
-#startGameScreen p {
+#startGameScreen p, #cloudVictory p, #sephirothVictory p {
   font-size: 2rem;
   margin: 0.5rem;
 }
-#startGameScreen div {
+#startGameScreen div, #cloudVictory div, #sephirothVictory div {
   border: 5px solid #9a9998;
   border-radius: 13px;
   background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
   padding: 1rem;
+}
+#startGameScreen #loadingText, #cloudVictory #loadingText, #sephirothVictory #loadingText {
+  display: none;
+  font-size: 1rem;
+}
+
+#cloudVictory, #sephirothVictory {
+  display: none;
+}
+#cloudVictory img, #sephirothVictory img {
+  width: 300px;
 }
 
 #musicOff {
