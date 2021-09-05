@@ -6,6 +6,24 @@ table {
     order: 3;
 }
 
+@keyframes blurEffect {
+    0% {
+        filter: blur(0);
+    }
+    
+    50% {
+        filter: blur(10px);
+    }
+    
+    100% {
+        filter: blur(50px);
+    }
+}
+
+.blurEffectMap {
+    animation: blurEffect 5s ease;
+}
+
 td {
     border: 1px solid black;
 }
