@@ -24,7 +24,15 @@ class Game {
 
     hideStartGameScreen() {
         $("#startGameBtn").on("click", function () {
+
+        audio.playCursorSound();
+
+        $("#loadingText").fadeIn(500);
+
+        setTimeout(function () {
             $("#startGameScreen").fadeOut("3000");
+        }, 1000);
+
         })
     }
 
@@ -300,20 +308,60 @@ class Game {
         if (this.currentPlayerPosition - indiceAdjacentPositionUpDown >= 0 &&
             this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionUpDown].id === this.enemyplayer.nameCharacter) {
 
+            audio.playAudioEnterBattle();
+
+            setTimeout(function () {
+                audio.playAudioFighting();
+            }, 500);
+
+            setTimeout(function () {
+                document.getElementsByTagName("table")[0].classList.add("blurEffectMap");
+            }, 500);
+
             this.startFight();
 
         } else if (this.currentPlayerPosition + indiceAdjacentPositionUpDown <= 99 &&
             this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionUpDown].id === this.enemyplayer.nameCharacter) {
+
+            audio.playAudioEnterBattle();
+
+            setTimeout(function () {
+                audio.playAudioFighting();
+            }, 500);
+
+            setTimeout(function () {
+                document.getElementsByTagName("table")[0].classList.add("blurEffectMap");
+            }, 500);
 
             this.startFight();
 
         } else if (this.currentPlayerPosition - indiceAdjacentPositionRightLeft >= 0 &&
             this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter) {
 
+            audio.playAudioEnterBattle();
+
+            setTimeout(function () {
+                audio.playAudioFighting();
+            }, 500);
+
+            setTimeout(function () {
+                document.getElementsByTagName("table")[0].classList.add("blurEffectMap");
+            }, 500);
+
             this.startFight();
 
         } else if (this.currentPlayerPosition + indiceAdjacentPositionRightLeft <= 99 &&
             this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter) {
+
+            audio.playAudioEnterBattle();
+
+            setTimeout(function () {
+                audio.playAudioFighting();
+            }, 500);
+
+            setTimeout(function () {
+                document.getElementsByTagName("table")[0].classList.add("blurEffectMap");
+            }, 500);
 
             this.startFight();
 
@@ -328,16 +376,22 @@ class Game {
     }
 
     startFight() {
-        // audio.playAudioFighting();
         this.displayQuestion();
         this.eventAttackBtn();
         this.eventDefendBtn();
     }
 
     displayQuestion() {
-        $("table").fadeOut("3000");
+        setTimeout(function () {
+            $("table").fadeOut("3000");
+        }, 3500);
+
         document.getElementById("defendOrAttackQuestion").innerHTML = `<span class="nameCharacterInsideQuestion">${this.currentPlayer.nameCharacter}</span>, would you like to attack your enemy or defend yourself ?`;
-        document.getElementById("defendOrAttack").style.display = "flex";
+
+        setTimeout(function () {
+            document.getElementById("defendOrAttack").style.display = "flex";
+        }, 3500);
+
     }
 
     eventAttackBtn() {
@@ -381,9 +435,19 @@ class Game {
     endGame() {
         if (cloud.health <= 0 || sephiroth.health <= 0) {
 
-            alert(`${this.enemyplayer.nameCharacter} est mort, ${this.currentPlayer.nameCharacter} remporte la victoire`);
+            if (this.currentPlayer === cloud) {
+                document.getElementById("cloudVictory").style.display = "flex";
+            } else {
+                document.getElementById("sephirothVictory").style.display = "flex";
+            }
+            // alert(`${this.enemyplayer.nameCharacter} est mort, ${this.currentPlayer.nameCharacter} remporte la victoire`);
 
-            document.location.reload();
+            audio.stopAudioFighting();
+            audio.playAudioVictory();
+
+            setTimeout(function () {
+                document.location.reload();
+            }, 4000);
 
         } else {
 

@@ -26,3 +26,4 @@ newGame.generateWayHorizontallyRight();
 newGame.checkElClicked();
 
 
+
