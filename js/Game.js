@@ -308,6 +308,9 @@ class Game {
         if (this.currentPlayerPosition - indiceAdjacentPositionUpDown >= 0 &&
             this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionUpDown].id === this.enemyplayer.nameCharacter) {
 
+            audio.stopMusicPrelude();
+            audio.hideBtnMusicPrelude();
+            audio.displayBtnMusicFighting();
             audio.playAudioEnterBattle();
 
             setTimeout(function () {
@@ -323,6 +326,9 @@ class Game {
         } else if (this.currentPlayerPosition + indiceAdjacentPositionUpDown <= 99 &&
             this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionUpDown].id === this.enemyplayer.nameCharacter) {
 
+            audio.stopMusicPrelude();
+            audio.hideBtnMusicPrelude();
+            audio.displayBtnMusicFighting();
             audio.playAudioEnterBattle();
 
             setTimeout(function () {
@@ -338,6 +344,9 @@ class Game {
         } else if (this.currentPlayerPosition - indiceAdjacentPositionRightLeft >= 0 &&
             this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter) {
 
+            audio.stopMusicPrelude();
+            audio.hideBtnMusicPrelude();
+            audio.displayBtnMusicFighting();
             audio.playAudioEnterBattle();
 
             setTimeout(function () {
@@ -353,6 +362,9 @@ class Game {
         } else if (this.currentPlayerPosition + indiceAdjacentPositionRightLeft <= 99 &&
             this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter) {
 
+            audio.stopMusicPrelude();
+            audio.hideBtnMusicPrelude();
+            audio.displayBtnMusicFighting();
             audio.playAudioEnterBattle();
 
             setTimeout(function () {
@@ -436,18 +448,36 @@ class Game {
         if (cloud.health <= 0 || sephiroth.health <= 0) {
 
             if (this.currentPlayer === cloud) {
-                document.getElementById("cloudVictory").style.display = "flex";
+                document.getElementById("endGameContainer").style.display = "flex";
+                const imgCloud = document.createElement("img");
+                imgCloud.src = "img/cloud_victory.gif";
+                imgCloud.classList.add("imgVictoriousPlayer");
+                const parentElement = document.getElementById("endGame");
+                parentElement.prepend(imgCloud);
+
             } else {
-                document.getElementById("sephirothVictory").style.display = "flex";
+                document.getElementById("endGameContainer").style.display = "flex";
+                const imgSephiroth = document.createElement("img");
+                imgSephiroth.src = "img/sephiroth_victory.gif";
+                // imgSephiroth.classList.add("imgVictoriousPlayer");
+                const parentElement = document.getElementById("endGame");
+                parentElement.prepend(imgSephiroth);
             }
             // alert(`${this.enemyplayer.nameCharacter} est mort, ${this.currentPlayer.nameCharacter} remporte la victoire`);
 
             audio.stopAudioFighting();
             audio.playAudioVictory();
 
-            setTimeout(function () {
+            document.getElementById("startNewGame").addEventListener("click", function () {
+
+                audio.playCursorSound();
                 document.location.reload();
-            }, 4000);
+            });
+
+
+            // setTimeout(function () {
+            //     document.location.reload();
+            // }, 6000);
 
         } else {
 
