@@ -6,8 +6,11 @@ body {
   margin: 0;
   padding: 0 1rem;
   background-color: #5A8EB8;
-  font-family: "ff7_font", "Arial", "sans-serif";
   color: #c4c6d2;
+}
+
+body, button {
+  font-family: "ff7_font", "Arial", "sans-serif";
 }
 
 img {
@@ -64,9 +67,10 @@ h2, p {
   align-items: center;
   background-color: transparent;
   border: none;
-  color: white;
+  color: #c4c6d2;
   margin: 1rem auto;
   cursor: pointer;
+  white-space: nowrap;
   font-family: "retroGaming", Arial, sans-serif;
 }
 .ff7Btn img {
@@ -271,7 +275,7 @@ td {
   text-transform: capitalize;
 }
 
-#startGameScreen, #cloudVictory, #sephirothVictory {
+#startGameScreen, #endGameContainer {
   position: absolute;
   top: 0;
   right: 0;
@@ -285,41 +289,50 @@ td {
   align-items: center;
   z-index: 1;
 }
-#startGameScreen h1, #startGameScreen h2, #startGameScreen p, #cloudVictory h1, #cloudVictory h2, #cloudVictory p, #sephirothVictory h1, #sephirothVictory h2, #sephirothVictory p {
+#startGameScreen h1, #startGameScreen h2, #startGameScreen p, #endGameContainer h1, #endGameContainer h2, #endGameContainer p {
   text-align: center;
 }
-#startGameScreen p, #cloudVictory p, #sephirothVictory p {
+#startGameScreen p, #endGameContainer p {
   font-size: 2rem;
   margin: 0.5rem;
 }
-#startGameScreen div, #cloudVictory div, #sephirothVictory div {
+#startGameScreen div, #endGameContainer div {
   border: 5px solid #9a9998;
   border-radius: 13px;
   background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
   padding: 1rem;
 }
-#startGameScreen #loadingText, #cloudVictory #loadingText, #sephirothVictory #loadingText {
+#startGameScreen #loadingText, #endGameContainer #loadingText {
   display: none;
   font-size: 1rem;
 }
 
-#cloudVictory, #sephirothVictory {
+#endGameContainer {
   display: none;
 }
-#cloudVictory img, #sephirothVictory img {
+#endGameContainer #endGame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 5px solid #9a9998;
+  border-radius: 13px;
+  background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
+  padding: 1rem;
+}
+#endGameContainer .imgVictoriousPlayer {
   width: 300px;
 }
 
-#musicOff {
+#musicPreludeOff, #musicFightingOff, #musicFightingOn {
   display: none;
 }
 
-#musicOn {
-  display: block;
+#musicPreludeOn {
+  display: flex;
 }
 
-#musicOn, #musicOff {
-  margin: 0 auto 1rem;
+#musicPreludeOn, #musicPreludeOff, #musicFightingOff, #musicFightingOn {
+  color: #c4c6d2;
 }
 
 /*# sourceMappingURL=style.css.map */
