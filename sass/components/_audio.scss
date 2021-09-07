@@ -1,11 +1,13 @@
-#musicOff {
+#musicPreludeOff, #musicFightingOff, #musicFightingOn {
     display: none;
 }
 
-#musicOn {
-    display: block;
+#musicPreludeOn {
+    display: flex;
 }
 
-#musicOn, #musicOff {
-    margin: 0 auto 1rem;
+#musicPreludeOn, #musicPreludeOff, #musicFightingOff, #musicFightingOn {
+    //margin: 0 auto 1rem;
+    color: $color-primary;
 }
+

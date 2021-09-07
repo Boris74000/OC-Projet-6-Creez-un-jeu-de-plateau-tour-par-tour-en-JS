@@ -20,7 +20,7 @@
     text-transform: capitalize;
 }
 
-#startGameScreen, #cloudVictory, #sephirothVictory {
+#startGameScreen, #endGameContainer {
     position: absolute;
     top: 0;
     right: 0;
@@ -54,10 +54,18 @@
     
 }
 
-#cloudVictory, #sephirothVictory {
+#endGameContainer {
     display: none;
     
-    img {
+    #endGame {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include ff7WindowStyle;
+    }
+    
+    .imgVictoriousPlayer {
         width: 300px;
     }
+    
 }

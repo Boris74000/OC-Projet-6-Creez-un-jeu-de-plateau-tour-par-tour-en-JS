@@ -3,9 +3,10 @@
     align-items: center;
     background-color: transparent;
     border: none;
-    color: white;
+    color: $color-primary;
     margin: 1rem auto;
     cursor: pointer;
+    white-space: nowrap;
     font-family: $paragraphe_font;
     
     img {
