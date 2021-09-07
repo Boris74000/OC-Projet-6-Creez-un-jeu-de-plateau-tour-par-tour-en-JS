@@ -13,9 +13,6 @@ const newGame = new Game();
 
 const audio = new GameMusic();
 
-audio.playMusic();
-audio.stopMusic();
-
 newGame.createDivCharacters();
 newGame.hideStartGameScreen();
 newGame.getCurrentPlayerPosition();
