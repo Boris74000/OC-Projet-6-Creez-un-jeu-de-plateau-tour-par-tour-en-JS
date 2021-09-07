@@ -10,10 +10,17 @@
     <body>
     <h1>FINAL FANTASY VII</h1>
 
-        <button id="musicOn">Music ON</button>
-        <button id="musicOff">Music OFF</button>
+        <button id="musicPreludeOn" class="ff7Btn"><img src="img/cursor_png.png" alt="curseur main">Music Prelude ON</button>
+        <button id="musicPreludeOff" class="ff7Btn"><img src="img/cursor_png.png" alt="curseur main">Music Prelude OFF</button>
+
+        <button id="musicFightingOn" class="ff7Btn"><img src="img/cursor_png.png" alt="curseur main">Music Fighting ON</button>
+        <button id="musicFightingOff" class="ff7Btn"><img src="img/cursor_png.png" alt="curseur main">Music Fighting OFF</button>
+
         <audio id="audioFilePrelude">
             <source src="audio/ff7_prelude.mp3" type="audio/mp3">
+        </audio>
+        <audio id="audioFileFighting">
+            <source src="audio/fighting.mp3" type="audio/mp3">
         </audio>
 
         <div id="startGameScreen">
@@ -36,17 +43,10 @@
             </div>
         </div>
 
-        <div id="cloudVictory">
-            <div>
-                <img src="img/cloud_victory.gif" alt="gif Cloud fête sa victoire">
-                <p>Cloud win the fight</p>
-            </div>
-        </div>
-
-        <div id="sephirothVictory">
-            <div>
-                <img src="img/sephiroth_victory.gif" alt="gif Sephiroth fête sa victoire">
-                <p>Sephiroth win the fight</p>
+        <div id="endGameContainer">
+            <div id="endGame">
+                <p id="victoriousPlayer"></p>
+                <button id="startNewGame" class="ff7Btn"><img src="img/cursor_png.png" alt="curseur main">Start new game</button>
             </div>
         </div>
 
