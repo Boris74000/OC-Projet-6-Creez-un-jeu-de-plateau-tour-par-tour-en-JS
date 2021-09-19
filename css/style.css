@@ -5,7 +5,7 @@
 body {
   margin: 0;
   padding: 0 1rem;
-  background-color: #5A8EB8;
+  background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
   color: #c4c6d2;
 }
 
@@ -80,7 +80,8 @@ h2, p {
 table {
   border-collapse: collapse;
   height: 560px;
-  background: linear-gradient(rgba(14, 13, 13, 0.5), rgba(24, 23, 23, 0.5)), url("../img/midgar_1556_875.png") -500px;
+  background: linear-gradient(rgba(14, 13, 13, 0.5), rgba(24, 23, 23, 0.5)), url("../img/midgar_1556_875.png") -200px;
+  background-size: cover;
   max-width: 100%;
   order: 3;
 }
@@ -121,7 +122,7 @@ td {
 
   table {
     order: unset;
-    flex-basis: 30%;
+    flex-basis: 35%;
   }
 
   .charactersAndMap {
@@ -170,17 +171,21 @@ td {
   grid-gap: 2rem;
   width: 63%;
   align-self: center;
-  margin-top: 1rem;
+  margin: 1rem 0;
   border: 5px solid #9a9998;
   border-radius: 13px;
   background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
   padding: 1rem;
+  box-shadow: 8px 6px 12px #efe8e847;
 }
 .characteristicsInvocation p {
   text-align: center;
 }
+.characteristicsInvocation h3 {
+  margin: 0.5rem 0 0;
+}
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .characteristicsInvocation {
     grid-template: repeat(2, 2fr)/repeat(3, 2fr);
   }
@@ -213,12 +218,12 @@ td {
   border-radius: 13px;
   background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
   padding: 1rem;
+  box-shadow: 8px 6px 12px #efe8e847;
 }
 #cloudCharacteristics p, #sephirothCharacteristics p {
   text-align: center;
 }
 #cloudCharacteristics img, #sephirothCharacteristics img {
-  width: 80%;
   height: 306px;
   object-fit: cover;
 }
@@ -247,7 +252,7 @@ td {
   #cloudCharacteristics, #sephirothCharacteristics {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-basis: 20%;
   }
 }
@@ -258,7 +263,7 @@ td {
   align-items: center;
   position: fixed;
   z-index: 1;
-  top: 33%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 0 1rem 1rem;
@@ -266,6 +271,7 @@ td {
   border-radius: 13px;
   background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
   padding: 1rem;
+  box-shadow: 8px 6px 12px #efe8e847;
 }
 #defendOrAttack #defendOrAttackQuestion {
   text-align: center;
@@ -301,6 +307,8 @@ td {
   border-radius: 13px;
   background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
   padding: 1rem;
+  box-shadow: 8px 6px 12px #efe8e847;
+  margin: 0 10%;
 }
 #startGameScreen #loadingText, #endGameContainer #loadingText {
   display: none;
@@ -318,6 +326,7 @@ td {
   border-radius: 13px;
   background: linear-gradient(180deg, #0a0c9f 33%, #0d0c7f 66%, #0c0e5c 100%);
   padding: 1rem;
+  box-shadow: 8px 6px 12px #efe8e847;
 }
 #endGameContainer .imgVictoriousPlayer {
   width: 300px;
