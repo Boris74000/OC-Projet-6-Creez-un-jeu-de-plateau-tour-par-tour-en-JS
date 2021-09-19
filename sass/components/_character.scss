@@ -23,7 +23,6 @@
     }
     
     img {
-        width: 80%;
         height: 306px;
         object-fit: cover;
     }
@@ -56,7 +55,7 @@
     #cloudCharacteristics, #sephirothCharacteristics {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-evenly;
         flex-basis: 20%;
     }
     

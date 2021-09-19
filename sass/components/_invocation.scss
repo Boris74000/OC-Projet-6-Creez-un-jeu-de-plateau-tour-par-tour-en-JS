@@ -35,15 +35,19 @@
     grid-gap: 2rem;
     width: 63%;
     align-self: center;
-    margin-top: 1rem;
+    margin: 1rem 0;
     @include ff7WindowStyle;
     
     p {
         text-align: center;
     }
+    
+    h3 {
+        margin: 0.5rem 0 0;
+    }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .characteristicsInvocation {
         grid-template: repeat(2, 2fr) / repeat(3, 2fr);
     }

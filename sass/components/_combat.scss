@@ -5,7 +5,7 @@
     align-items: center;
     position: fixed;
     z-index: 1;
-    top: 33%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 0 1rem 1rem;
@@ -45,6 +45,7 @@
     
     div {
         @include ff7WindowStyle;
+        margin: 0 10%;
     }
     
     #loadingText {
