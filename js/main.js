@@ -1,3 +1,5 @@
+"use strict";
+
 const chocoMog = new Invocation("Choco/Mog", "chocoMog",10);
 const shiva = new Invocation("Shiva","shiva", 15);
 const titan = new Invocation("Titan","titan", 20);

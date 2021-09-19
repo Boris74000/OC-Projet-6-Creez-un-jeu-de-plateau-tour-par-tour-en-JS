@@ -1,5 +1,6 @@
-class Map {
+"use strict";
 
+class Map {
     constructor(rowNumber, cellNumber) {
         this.rowNumber = rowNumber;
         this.cellNumber = cellNumber;
@@ -26,24 +27,27 @@ class Map {
         }
     }
 
+    generateRandomNumberMethod() {
+        return Math.floor(Math.random() * this.cells.length);
+    }
+
     getOneRandomNumber() {
         this.cells = document.getElementsByTagName('td');
 
         this.arrayContainer = [];
 
-        this.randomNumber = Math.floor(Math.random() * this.cells.length);
+        this.randomNumber = this.generateRandomNumberMethod();
 
         this.arrayContainer.push(this.randomNumber);
     }
 
     generateObstacle() {
         for (let counter = 0; counter < 12; counter++) {
-            //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
-
-            let newRandomNumber = Math.floor(Math.random() * this.cells.length);
+            //the counter is less than twelve because we already initialise arrayContainer[0] with randomNumber
+            let newRandomNumber = this.generateRandomNumberMethod();
 
             while (this.arrayContainer.lastIndexOf(newRandomNumber) !== -1) {
-                newRandomNumber = Math.floor(Math.random() * this.cells.length);
+                newRandomNumber = this.generateRandomNumberMethod();
             }
 
             this.arrayContainer.push(newRandomNumber);
@@ -60,7 +64,7 @@ class Map {
 
     generateInvocation() {
         for (let counter = 0; counter < 4; counter++) {
-            //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
+            //the counter is less than four because we already initialise arrayContainer[0] with randomNumber
 
             let newRandomNumber = Math.floor(Math.random() * this.cells.length);
 
@@ -87,8 +91,7 @@ class Map {
 
     generateCharacters() {
         for (let counter = 0; counter < 2; counter++) {
-
-            //the counter is less than five because we already initialise arrayContainer[0] with randomNumber
+            //the counter is less than two because we already initialise arrayContainer[0] with randomNumber
 
             let newRandomNumber = Math.floor(Math.random() * this.cells.length);
 
@@ -140,7 +143,7 @@ class Map {
     }
 
     displayCharacteristicsCharacters() {
-        // On affiche les caractéristique de chaque joueur
+        // On affiche les caractéristiques de chaque joueur
         document.getElementById("cloudHealthPoints").innerHTML = cloud.health;
         document.getElementById("cloudInvocationPossessed").innerHTML = cloud.invocation.nameInvocation;
 

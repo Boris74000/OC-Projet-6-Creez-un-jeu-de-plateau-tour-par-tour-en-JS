@@ -47,11 +47,8 @@ class Game {
     }
 
     generateWayVerticallyUp() {
-        // alert("ici");
-        // console.log(this.keyPressCount);
-        //
         let indiceVerticallyUp = 10;
-        //
+
         this.indiceWayPossible = 0;
 
         if (this.keyPressCount > 0 && this.keyPressCount < 3) {
@@ -59,7 +56,6 @@ class Game {
         } else {
             this.indiceWayPossible = 0;
         }
-        // console.log(this.indiceWayPossible);
 
         for (let i = this.indiceWayPossible; i < 3; i++) {
 
@@ -168,51 +164,47 @@ class Game {
            const keyboardPressed = e.key;
 
            if (keyboardPressed === 'ArrowDown') {
-               // alert("ok");
-               // console.log(e);
                this.cellMovement = this.cellsTd[this.currentPlayerPosition + 10];
+
                if (this.cellMovement.classList.contains("wayPossible")) {
                    // alert('wayPossible');
                    this.keyPressCount++;
-                   this.moveCharacter(e);
+                   this.moveCharacter();
                    e.stopImmediatePropagation();
                }
 
            }
 
            if (keyboardPressed === 'ArrowUp') {
-               // alert("ok");
-               // console.log(e);
                this.cellMovement = this.cellsTd[this.currentPlayerPosition - 10];
+
                if (this.cellMovement.classList.contains("wayPossible")) {
                    // alert('wayPossible');
                    this.keyPressCount++;
-                   this.moveCharacter(e);
+                   this.moveCharacter();
                    e.stopImmediatePropagation();
                }
 
            }
 
            if (keyboardPressed === 'ArrowLeft') {
-               // alert("ok");
-               // console.log(e);
                this.cellMovement = this.cellsTd[this.currentPlayerPosition - 1];
+
                if (this.cellMovement.classList.contains("wayPossible")) {
                    // alert('wayPossible');
                    this.keyPressCount++;
-                   this.moveCharacter(e);
+                   this.moveCharacter();
                    e.stopImmediatePropagation();
                }
 
            }
 
            if (keyboardPressed === 'ArrowRight') {
-               // alert("ok");
-               // console.log(e);
                this.cellMovement = this.cellsTd[this.currentPlayerPosition + 1];
+
                if (this.cellMovement.classList.contains("wayPossible")) {
                    this.keyPressCount++;
-                   this.moveCharacter(e);
+                   this.moveCharacter();
                    e.stopImmediatePropagation();
                }
 
@@ -224,13 +216,10 @@ class Game {
                e.stopImmediatePropagation();
            }
 
-           // console.log(this.keyPressCount);
-
        })
     }
 
-    moveCharacter = (e) => {
-
+    moveCharacter() {
         document.getElementById(this.currentPlayer.nameCharacter).classList.add("wayPossible");
         document.getElementById(this.currentPlayer.nameCharacter).removeAttribute('id');
 
@@ -242,7 +231,7 @@ class Game {
             this.cellMovement.classList.contains("odin") ||
             this.cellMovement.classList.contains("knightsOfRound")) {
 
-            this.changeInvocation(e);
+            this.changeInvocation();
         }
 
         this.detectEnemy();
@@ -295,12 +284,27 @@ class Game {
             document.getElementById("sephirothInvocationPossessed").innerHTML = sephiroth.invocation.nameInvocation;
         }
 
-        // console.log(this.currentPlayerInvocation);
+    }
+
+    manageMusic() {
+        audio.stopMusicPrelude();
+        audio.hideBtnMusicPrelude();
+        audio.displayBtnMusicFighting();
+        audio.playAudioEnterBattle();
+
+        setTimeout(function () {
+            audio.playAudioFighting();
+        }, 500);
+    }
+
+    manageBlurEffectMap() {
+        setTimeout(function () {
+            document.getElementsByTagName("table")[0].classList.add("blurEffectMap");
+        }, 500);
     }
 
     detectEnemy() {
         this.getCurrentPlayerPosition();
-        // console.log(this.keyPressCount)
 
         let indiceAdjacentPositionUpDown = 10
         let indiceAdjacentPositionRightLeft = 1
@@ -308,73 +312,29 @@ class Game {
         if (this.currentPlayerPosition - indiceAdjacentPositionUpDown >= 0 &&
             this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionUpDown].id === this.enemyplayer.nameCharacter) {
 
-            audio.stopMusicPrelude();
-            audio.hideBtnMusicPrelude();
-            audio.displayBtnMusicFighting();
-            audio.playAudioEnterBattle();
-
-            setTimeout(function () {
-                audio.playAudioFighting();
-            }, 500);
-
-            setTimeout(function () {
-                document.getElementsByTagName("table")[0].classList.add("blurEffectMap");
-            }, 500);
-
+            this.manageMusic();
+            this.manageBlurEffectMap();
             this.startFight();
 
         } else if (this.currentPlayerPosition + indiceAdjacentPositionUpDown <= 99 &&
             this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionUpDown].id === this.enemyplayer.nameCharacter) {
 
-            audio.stopMusicPrelude();
-            audio.hideBtnMusicPrelude();
-            audio.displayBtnMusicFighting();
-            audio.playAudioEnterBattle();
-
-            setTimeout(function () {
-                audio.playAudioFighting();
-            }, 500);
-
-            setTimeout(function () {
-                document.getElementsByTagName("table")[0].classList.add("blurEffectMap");
-            }, 500);
-
+            this.manageMusic();
+            this.manageBlurEffectMap();
             this.startFight();
 
         } else if (this.currentPlayerPosition - indiceAdjacentPositionRightLeft >= 0 &&
             this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter) {
 
-            audio.stopMusicPrelude();
-            audio.hideBtnMusicPrelude();
-            audio.displayBtnMusicFighting();
-            audio.playAudioEnterBattle();
-
-            setTimeout(function () {
-                audio.playAudioFighting();
-            }, 500);
-
-            setTimeout(function () {
-                document.getElementsByTagName("table")[0].classList.add("blurEffectMap");
-            }, 500);
-
+            this.manageMusic();
+            this.manageBlurEffectMap();
             this.startFight();
 
         } else if (this.currentPlayerPosition + indiceAdjacentPositionRightLeft <= 99 &&
             this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter) {
 
-            audio.stopMusicPrelude();
-            audio.hideBtnMusicPrelude();
-            audio.displayBtnMusicFighting();
-            audio.playAudioEnterBattle();
-
-            setTimeout(function () {
-                audio.playAudioFighting();
-            }, 500);
-
-            setTimeout(function () {
-                document.getElementsByTagName("table")[0].classList.add("blurEffectMap");
-            }, 500);
-
+            this.manageMusic();
+            this.manageBlurEffectMap();
             this.startFight();
 
         } else if (this.keyPressCount < 3) {
@@ -398,7 +358,10 @@ class Game {
             $("table").fadeOut("3000");
         }, 3500);
 
-        document.getElementById("defendOrAttackQuestion").innerHTML = `<span class="nameCharacterInsideQuestion">${this.currentPlayer.nameCharacter}</span>, would you like to attack your enemy or defend yourself ?`;
+        document.getElementById("defendOrAttackQuestion").innerHTML =
+            `<span class="nameCharacterInsideQuestion">
+                ${this.currentPlayer.nameCharacter}
+             </span>, would you like to attack your enemy or defend yourself ?`;
 
         setTimeout(function () {
             document.getElementById("defendOrAttack").style.display = "flex";
@@ -423,9 +386,6 @@ class Game {
 
             e.stopImmediatePropagation();
 
-            // document.getElementById("attack").removeEventListener("click", (e) => {});
-            // document.getElementById("defend").removeEventListener("click", (e) => {});
-
             this.endGame();
         })
     }
@@ -436,9 +396,6 @@ class Game {
             this.currentPlayer.defenseMode = true;
 
             e.stopImmediatePropagation();
-
-            // document.getElementById("attack").removeEventListener("click", (e) => {});
-            // document.getElementById("defend").removeEventListener("click", (e) => {});
 
             this.endGame();
         })
@@ -459,11 +416,9 @@ class Game {
                 document.getElementById("endGameContainer").style.display = "flex";
                 const imgSephiroth = document.createElement("img");
                 imgSephiroth.src = "img/sephiroth_victory.gif";
-                // imgSephiroth.classList.add("imgVictoriousPlayer");
                 const parentElement = document.getElementById("endGame");
                 parentElement.prepend(imgSephiroth);
             }
-            // alert(`${this.enemyplayer.nameCharacter} est mort, ${this.currentPlayer.nameCharacter} remporte la victoire`);
 
             audio.stopAudioFighting();
             audio.playAudioVictory();
@@ -473,11 +428,6 @@ class Game {
                 audio.playCursorSound();
                 document.location.reload();
             });
-
-
-            // setTimeout(function () {
-            //     document.location.reload();
-            // }, 6000);
 
         } else {
 

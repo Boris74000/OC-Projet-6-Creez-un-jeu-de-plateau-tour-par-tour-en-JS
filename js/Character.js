@@ -1,5 +1,6 @@
-class Character{
+"use strict";
 
+class Character{
     constructor(nameCharacter, health, invocation, isCurrentPlayer, defenseMode) {
         this.nameCharacter = nameCharacter;
         this.health = health;
@@ -7,7 +8,4 @@ class Character{
         this.isCurrentPlayer = isCurrentPlayer;
         this.defenseMode = defenseMode;
     }
-
-
-
 }
