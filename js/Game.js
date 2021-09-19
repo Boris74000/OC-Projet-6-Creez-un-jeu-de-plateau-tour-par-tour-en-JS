@@ -99,20 +99,10 @@ class Game {
 
         for (let i = this.indiceWayPossible; i < 3; i++) {
 
-            // On récupère la dizaine de l'indice de la position du personnage
-            let unitsPositionCharacter = this.currentPlayerPosition % 10;
-            let tensPositionCharacter = (this.currentPlayerPosition - unitsPositionCharacter) / 10;
-
-            // On récupère la dizaine de l'indice de la position du personnage - indiceHorizontallyLeft
-            let unitsPositionCharacterLessIndex = (this.currentPlayerPosition - indiceHorizontallyLeft) % 10;
-            let tensPositionCharacterLessIndex = (this.currentPlayerPosition - indiceHorizontallyLeft - unitsPositionCharacterLessIndex) / 10;
-
-            // Si la soustraction des 2 dizaines est égal à 0 (on est donc sur la même ligne)
-
             if (this.currentPlayerPosition - indiceHorizontallyLeft >= 0 &&
                 this.cellsTd[this.currentPlayerPosition - indiceHorizontallyLeft].className !== "obstacle" &&
                 this.cellsTd[this.currentPlayerPosition - indiceHorizontallyLeft].id !== this.enemyplayer.nameCharacter &&
-                tensPositionCharacter - tensPositionCharacterLessIndex === 0) {
+                this.knowIfCharactersOnTheSameLine("left", indiceHorizontallyLeft)) {
 
                 this.cellsTd[this.currentPlayerPosition - indiceHorizontallyLeft].classList.add("wayPossible");
 
@@ -130,20 +120,10 @@ class Game {
 
         for (let i = this.indiceWayPossible; i < 3; i++) {
 
-            // On récupère la dizaine de l'indice de la position du personnage
-            let unitsPositionCharacter = this.currentPlayerPosition % 10;
-            let tensPositionCharacter = (this.currentPlayerPosition - unitsPositionCharacter) / 10;
-
-            // On récupère la dizaine de l'indice de la position du personnage - indiceHorizontallyRight
-            let unitsPositionCharacterLessIndex = (this.currentPlayerPosition + indiceHorizontallyRight) % 10;
-            let tensPositionCharacterLessIndex = (this.currentPlayerPosition + indiceHorizontallyRight - unitsPositionCharacterLessIndex) / 10;
-
-            // Si la soustraction des 2 dizaines est égal à 0 (on est donc sur la même ligne)
-
             if (this.currentPlayerPosition + indiceHorizontallyRight <= 99 &&
                 this.cellsTd[this.currentPlayerPosition + indiceHorizontallyRight].className !== "obstacle" &&
                 this.cellsTd[this.currentPlayerPosition + indiceHorizontallyRight].id !== this.enemyplayer.nameCharacter &&
-                tensPositionCharacter - tensPositionCharacterLessIndex === 0) {
+                this.knowIfCharactersOnTheSameLine("right", indiceHorizontallyRight)) {
 
                 this.cellsTd[this.currentPlayerPosition + indiceHorizontallyRight].classList.add("wayPossible");
 
@@ -155,7 +135,6 @@ class Game {
             indiceHorizontallyRight += 1;
         }
     }
-
 
     checkElClicked() {
        this.keyPressCount = 0;
@@ -286,28 +265,11 @@ class Game {
 
     }
 
-    manageMusic() {
-        audio.stopMusicPrelude();
-        audio.hideBtnMusicPrelude();
-        audio.displayBtnMusicFighting();
-        audio.playAudioEnterBattle();
-
-        setTimeout(function () {
-            audio.playAudioFighting();
-        }, 500);
-    }
-
-    manageBlurEffectMap() {
-        setTimeout(function () {
-            document.getElementsByTagName("table")[0].classList.add("blurEffectMap");
-        }, 500);
-    }
-
     detectEnemy() {
         this.getCurrentPlayerPosition();
 
-        let indiceAdjacentPositionUpDown = 10
-        let indiceAdjacentPositionRightLeft = 1
+        const indiceAdjacentPositionUpDown = 10
+        const indiceAdjacentPositionRightLeft = 1
 
         if (this.currentPlayerPosition - indiceAdjacentPositionUpDown >= 0 &&
             this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionUpDown].id === this.enemyplayer.nameCharacter) {
@@ -324,14 +286,16 @@ class Game {
             this.startFight();
 
         } else if (this.currentPlayerPosition - indiceAdjacentPositionRightLeft >= 0 &&
-            this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter) {
+            this.cellsTd[this.currentPlayerPosition - indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter &&
+            this.knowIfCharactersOnTheSameLine("left", indiceAdjacentPositionRightLeft)) {
 
             this.manageMusic();
             this.manageBlurEffectMap();
             this.startFight();
 
         } else if (this.currentPlayerPosition + indiceAdjacentPositionRightLeft <= 99 &&
-            this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter) {
+            this.cellsTd[this.currentPlayerPosition + indiceAdjacentPositionRightLeft].id === this.enemyplayer.nameCharacter &&
+            this.knowIfCharactersOnTheSameLine("right", indiceAdjacentPositionRightLeft)) {
 
             this.manageMusic();
             this.manageBlurEffectMap();
@@ -345,6 +309,51 @@ class Game {
 
             this.nextRound();
         }
+    }
+
+    knowIfCharactersOnTheSameLine(direction, indiceAdjacentPosition) {
+        // On récupère la dizaine de l'indice de la position du personnage
+        const unitsPositionCharacter = this.currentPlayerPosition % 10;
+        const tensPositionCharacter = (this.currentPlayerPosition - unitsPositionCharacter) / 10;
+
+        if (direction === 'right') {
+            // On récupère la dizaine de l'indice de la position du personnage - indiceAdjacentPosition   <= Vers la droite
+            const unitsPositionCharacterLessIndex = (this.currentPlayerPosition + indiceAdjacentPosition) % 10;
+            const tensPositionCharacterLessIndex = (this.currentPlayerPosition + indiceAdjacentPosition - unitsPositionCharacterLessIndex) / 10;
+            // Si la soustraction des 2 dizaines est égal à 0 (on est donc sur la même ligne)
+            if (tensPositionCharacter - tensPositionCharacterLessIndex === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (direction === 'left') {
+            // On récupère la dizaine de l'indice de la position du personnage - indiceAdjacentPosition   <= Vers la gauche
+            const unitsPositionCharacterLessIndex = (this.currentPlayerPosition - indiceAdjacentPosition) % 10;
+            const tensPositionCharacterLessIndex = (this.currentPlayerPosition - indiceAdjacentPosition - unitsPositionCharacterLessIndex) / 10;
+            // Si la soustraction des 2 dizaines est égal à 0 (on est donc sur la même ligne)
+            if (tensPositionCharacter - tensPositionCharacterLessIndex === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    manageMusic() {
+        audio.stopMusicPrelude();
+        audio.hideBtnMusicPrelude();
+        audio.displayBtnMusicFighting();
+        audio.playAudioEnterBattle();
+
+        setTimeout(function () {
+            audio.playAudioFighting();
+        }, 500);
+    }
+
+    manageBlurEffectMap() {
+        setTimeout(function () {
+            document.getElementsByTagName("table")[0].classList.add("blurEffectMap");
+        }, 500);
     }
 
     startFight() {
