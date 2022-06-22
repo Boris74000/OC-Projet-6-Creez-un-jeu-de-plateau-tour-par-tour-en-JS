@@ -43,3 +43,7 @@ Lors d'un combat, le fonctionnement du jeu est le suivant :
 - JS natif
 - Jquery
 - Sass
+
+## Demo
+
+[Tester le jeu](https://jeu-plateau-tour-par-tour.cb-dauvier.fr/)
